@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Table(name="distributeur")
 public class Distributeur {
 
 	@Id
@@ -13,6 +14,7 @@ public class Distributeur {
 	private Long id;
 	private String reference;
 	private String libelle;
+
 	public Long getId() {
 		return id;
 	}

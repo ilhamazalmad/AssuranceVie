@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Table(name="InscriptionAssuranceVie")
 public class InscriptionAssuranceVie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,8 +18,14 @@ public class InscriptionAssuranceVie {
 	//private produit;
 	private Double prix;
 	private Date dateInscription;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "distrib_id", referencedColumnName = "id")
 	private Distributeur distributeur;
+	@OneToMany(mappedBy="InscriptionAssuranceVie")
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
+
+
+
 	public Long getId() {
 		return id;
 	}

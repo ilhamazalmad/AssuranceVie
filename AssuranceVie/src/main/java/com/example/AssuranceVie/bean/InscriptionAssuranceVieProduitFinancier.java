@@ -6,13 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Table(name="InscriptionAssuranceVieProduitFinancier")
 public class InscriptionAssuranceVieProduitFinancier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "insvie_id", referencedColumnName = "id")
 	private InscriptionAssuranceVie iAV;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "prodfin_id", referencedColumnName = "id")
 	private ProduitFinancier produit ;
+
+
 	public Long getId() {
 		return id;
 	}
