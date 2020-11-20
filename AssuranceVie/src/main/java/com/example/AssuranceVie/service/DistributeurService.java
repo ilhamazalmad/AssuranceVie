@@ -35,7 +35,7 @@ public class DistributeurService {
 	
 
 	public List<Distributeur> findAll() {
-		return distributeurDao.findAll();
+		return (List<Distributeur>) distributeurDao.findAll();
 	}
 
 	public Optional<Distributeur> findById(Long id) {
@@ -47,5 +47,7 @@ public class DistributeurService {
 		distributeurDao.deleteById(id);
 	}
 	
-	
+
+
+
 }

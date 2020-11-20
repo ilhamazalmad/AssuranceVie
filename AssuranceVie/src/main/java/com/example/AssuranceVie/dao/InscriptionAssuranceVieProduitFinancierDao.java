@@ -5,8 +5,14 @@ import org.springframework.stereotype.Repository;
 
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
 
+import java.util.List;
+
 
 @Repository
 public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepository<InscriptionAssuranceVieProduitFinancier,Long>{
+List<InscriptionAssuranceVieProduitFinancier> findByProduit_Id(Long id);
+List<InscriptionAssuranceVieProduitFinancier> findByiAV_Reference(String ref);
+    List<InscriptionAssuranceVieProduitFinancier> findByiAV_Id(Long id);
+
 
 }

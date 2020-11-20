@@ -1,15 +1,16 @@
 package com.example.AssuranceVie.ws;
 
+import com.example.AssuranceVie.bean.Distributeur;
+import com.example.AssuranceVie.bean.ProduitFinancier;
 import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("assurance-api/IAV")
@@ -17,8 +18,37 @@ public class InscriptionAssuranceVieRest {
 
 	@Autowired
 	InscriptionAssuranceVieService iAVService;
-	@GetMapping("/distID")
-	List<InscriptionAssuranceVie> findAllByDistributeur(@PathParam("distID") int id){
-		return iAVService.findAllByDistributeur(id);
+	@GetMapping("find/distID/{distID}")
+	List<InscriptionAssuranceVie> findAllByDistributeur_Id(@PathVariable Long distID){
+		return iAVService.findAllByDistributeur_Id(distID);
 	}
+	@GetMapping("find/reference/{reference}")
+	List<InscriptionAssuranceVie> findAllByReference(@PathVariable  String  reference){
+		return iAVService.findByReference(reference);
+	}
+	@GetMapping("find/price/{price}")
+	InscriptionAssuranceVie findAllByPrix(@PathVariable double price){
+		return iAVService.findByPrix(price);
+	}
+	@GetMapping("find/all")
+	List<InscriptionAssuranceVie> findAll(){
+		return iAVService.findAll();
+	}
+	@PostMapping("/save")
+	public int save(@RequestBody InscriptionAssuranceVie insav) {
+		return iAVService.save(insav);
+	}
+
+	@GetMapping("/find/id/{id}")
+	public Optional<InscriptionAssuranceVie> findById(@PathVariable Long id) {
+		return iAVService.findById(id);
+	}
+
+	@DeleteMapping("/delete/id/{id}")
+	public void deleteById(@PathVariable Long id) {
+		iAVService.deleteById(id);
+	}
+
+
+
 }
