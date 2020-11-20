@@ -1,6 +1,9 @@
 package com.example.AssuranceVie.bean;
 
+
 import javax.persistence.CascadeType;
+import javax.persistence.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Formule")
+@Table(name="formule")
 public class Formule {
 
 	@Id
@@ -21,9 +24,11 @@ public class Formule {
 	private String reference;
 	private String libelle;
 	private Double prix;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produitFinancier", referencedColumnName = "id")
+
+	@ManyToOne
+	@JoinColumn(name="produitFinancier", nullable=false)
 	private ProduitFinancier produitFinancier;
+
 	public Long getId() {
 		return id;
 	}

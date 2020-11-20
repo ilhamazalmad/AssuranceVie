@@ -25,7 +25,7 @@ public class FormuleService {
 		return formuleDao.findByLibelle(libelle);
 	}
 
-	public List<Formule> findByProduitFinancier(ProduitFinancier produitFinancier) {
+	/*public List<Formule> findByProduitFinancier(ProduitFinancier produitFinancier) {
 		return formuleDao.findByProduitFinancier(produitFinancier);
 	}
 	
@@ -33,7 +33,7 @@ public class FormuleService {
 		Formule formule = findByReference(reference);
 		formule.setPrix(prix);
 		formuleDao.save(formule);
-	}
+	}*/
 
 	public int save(Formule formule) {
 		if (findByReference(formule.getReference())==null && findByLibelle(formule.getLibelle())==null)

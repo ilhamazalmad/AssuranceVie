@@ -16,9 +16,6 @@ import com.example.AssuranceVie.bean.Formule;
 import com.example.AssuranceVie.bean.ProduitFinancier;
 import com.example.AssuranceVie.service.ProduitFinancierService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-@Api("")
 @RestController
 @RequestMapping("assurance-api/Produit")
 public class ProduitFinancierRest {
@@ -26,43 +23,36 @@ public class ProduitFinancierRest {
 
 	@Autowired
 	ProduitFinancierService produitFinancierService;
-	@ApiOperation("")
 	@GetMapping("find/libelle/{libelle}")
 	public ProduitFinancier findByLibelle(@PathVariable String libelle) {
 		return produitFinancierService.findByLibelle(libelle);
 	}
 
-	@ApiOperation("")
 	@GetMapping("find/code/{code}")
 	public ProduitFinancier findByCode(@PathVariable String code) {
 		return produitFinancierService.findByCode(code);
 	}
 
-	@ApiOperation("")
-	@PostMapping("/save/id/{id}")
+	/*@PostMapping("/save/id/{id}")
 	public void addFormule(@PathVariable Long id, @RequestBody Formule formule) {
 		produitFinancierService.addFormule(id, formule);
-	}
+	}*/
 
-	@ApiOperation("")
 	@PostMapping("/save")
 	public int save(@RequestBody ProduitFinancier produitFinancier) {
 		return produitFinancierService.save(produitFinancier);
 	}
 
-	@ApiOperation("")
 	@GetMapping("/find")
 	public List<ProduitFinancier> findAll() {
 		return produitFinancierService.findAll();
 	}
 
-	@ApiOperation("")
 	@GetMapping("/find/id/{id}")
 	public Optional<ProduitFinancier> findById(@PathVariable Long id) {
 		return produitFinancierService.findById(id);
 	}
 
-	@ApiOperation("")
 	@DeleteMapping("/delete/id/{id}")
 	public void deleteById(@PathVariable Long id) {
 		produitFinancierService.deleteById(id);

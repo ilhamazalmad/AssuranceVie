@@ -25,13 +25,13 @@ public class ProduitFinancierService {
 		return produitFinancierDao.findByCode(code);
 	}
 
-	public void addFormule(Long idProd, Formule formule) {
+	/*public void addFormule(Long idProd, Formule formule) {
 		Optional<ProduitFinancier> produit = findById(idProd);
 		List<Formule> formules = produit.get().getFormules();
 		formules.add(formule);
 		produit.get().setFormules(formules);
 		produitFinancierDao.save(produit.get());
-	}
+	}*/
 
 	public int save(ProduitFinancier produitFinancier) {
 		if (findByCode(produitFinancier.getCode())==null && findByLibelle(produitFinancier.getLibelle())==null)

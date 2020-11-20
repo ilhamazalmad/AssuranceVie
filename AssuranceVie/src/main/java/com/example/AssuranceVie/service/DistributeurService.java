@@ -32,6 +32,7 @@ public class DistributeurService {
 		else
 			return -1;
 	}
+	
 
 	public List<Distributeur> findAll() {
 		return distributeurDao.findAll();

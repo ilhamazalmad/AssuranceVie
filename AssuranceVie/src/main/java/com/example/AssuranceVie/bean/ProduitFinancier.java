@@ -1,5 +1,7 @@
 package com.example.AssuranceVie.bean;
 
+
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,10 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="ProduitFinancier")
-
+@Table(name="produitfinancier")
 public class ProduitFinancier {
 
 	@Id
@@ -20,8 +22,8 @@ public class ProduitFinancier {
 	private Long id;
 	private String libelle;
 	private String code;
-	@OneToMany
-	@JoinColumn(name = "formule")
+
+	@OneToMany(mappedBy="produitFinancier")
 	private List <Formule> formules;
 	public Long getId() {
 		return id;
@@ -32,6 +34,7 @@ public class ProduitFinancier {
 	public String getLibelle() {
 		return libelle;
 	}
+
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}

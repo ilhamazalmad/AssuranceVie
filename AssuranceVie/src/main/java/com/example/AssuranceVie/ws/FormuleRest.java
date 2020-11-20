@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.AssuranceVie.bean.Formule;
 import com.example.AssuranceVie.bean.ProduitFinancier;
 import com.example.AssuranceVie.service.FormuleService;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-@Api("")
 @RestController
 @RequestMapping("assurance-api/Formule")
 public class FormuleRest {
@@ -26,49 +22,42 @@ public class FormuleRest {
 	@Autowired
 	FormuleService formuleService ;
 
-	@ApiOperation("")
 	@GetMapping("/find/reference/{reference}")
 	public Formule findByReference(@PathVariable String reference) {
 		return formuleService.findByReference(reference);
 	}
 
-	@ApiOperation("")
 	@GetMapping("/find/libelle/{libelle}")
 	public Formule findByLibelle(@PathVariable String libelle) {
 		return formuleService.findByLibelle(libelle);
 	}
 
-	@ApiOperation("")
+	/*
 	@GetMapping("/find/produitFinancier")
 	public List<Formule> findByProduitFinancier(@RequestBody ProduitFinancier produitFinancier) {
 		return formuleService.findByProduitFinancier(produitFinancier);
 	}
 
-	@ApiOperation("")
 	@PostMapping("/save/reference/{reference}/prix/{prix}")
 	public void Modify(@PathVariable String reference, @PathVariable Double prix) {
 		formuleService.Modify(reference, prix);
-	}
+	}*/
 
-	@ApiOperation("")
 	@PostMapping("/save")
 	public int save(@RequestBody Formule formule) {
 		return formuleService.save(formule);
 	}
 
-	@ApiOperation("")
 	@GetMapping("/find")
 	public List<Formule> findAll() {
 		return formuleService.findAll();
 	}
 
-	@ApiOperation("")
 	@GetMapping("/find/id/{id}")
 	public Optional<Formule> findById(@PathVariable Long id) {
 		return formuleService.findById(id);
 	}
 
-	@ApiOperation("")
 	@DeleteMapping("/delete/id/{id}")
 	public void deleteById(@PathVariable Long id) {
 		formuleService.deleteById(id);

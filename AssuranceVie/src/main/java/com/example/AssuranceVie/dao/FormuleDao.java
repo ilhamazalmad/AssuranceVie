@@ -19,10 +19,10 @@ public interface FormuleDao extends JpaRepository<Formule,Long>{
 	
 	public Formule findByLibelle(String libelle);
 		
-	public void Modify(String reference,Double prix);
+	//public void Modify(String reference,Double prix);
 	
-	@Query ("Select p.Formule from ProduitFinancier p where p.id=p.id")
-	public List<Formule> findByProduitFinancier(ProduitFinancier produitFinancier);
+	//@Query ("Select p.Formule from ProduitFinancier p where p.id=p.id")
+	//public List<Formule> findByProduitFinancier(ProduitFinancier produitFinancier);
 	
 	
 	
