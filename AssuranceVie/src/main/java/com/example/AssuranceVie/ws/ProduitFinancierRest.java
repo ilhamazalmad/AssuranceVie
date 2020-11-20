@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,11 +34,6 @@ public class ProduitFinancierRest {
 		return produitFinancierService.findByCode(code);
 	}
 
-	/*@PostMapping("/save/id/{id}")
-	public void addFormule(@PathVariable Long id, @RequestBody Formule formule) {
-		produitFinancierService.addFormule(id, formule);
-	}*/
-
 	@PostMapping("/save")
 	public int save(@RequestBody ProduitFinancier produitFinancier) {
 		return produitFinancierService.save(produitFinancier);
@@ -58,5 +54,11 @@ public class ProduitFinancierRest {
 		produitFinancierService.deleteById(id);
 	}
 
+
+	/*
+	@PutMapping("/save/id/{id}")
+	public void addFormule(@PathVariable Long id, @RequestBody Formule formule) {
+		produitFinancierService.addFormule(id, formule);
+	}*/
 
 }
