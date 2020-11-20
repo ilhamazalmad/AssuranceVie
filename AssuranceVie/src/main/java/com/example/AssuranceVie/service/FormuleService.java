@@ -25,16 +25,11 @@ public class FormuleService {
 		return formuleDao.findByLibelle(libelle);
 	}
 
-	/*public List<Formule> findByProduitFinancier(ProduitFinancier produitFinancier) {
+	public List<Formule> findByProduitFinancier(Long produitFinancier) {
 		return formuleDao.findByProduitFinancier(produitFinancier);
 	}
 	
-	public void Modify(String reference, Double prix) {
-		Formule formule = findByReference(reference);
-		formule.setPrix(prix);
-		formuleDao.save(formule);
-	}*/
-
+	
 	public int save(Formule formule) {
 		if (findByReference(formule.getReference())==null && findByLibelle(formule.getLibelle())==null)
 		{

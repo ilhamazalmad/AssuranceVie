@@ -23,7 +23,7 @@ public class ProduitFinancier {
 	private String libelle;
 	private String code;
 
-	@OneToMany(mappedBy="produitFinancier")
+	@OneToMany(mappedBy="produitFinancier",cascade = CascadeType.MERGE)
 	private List <Formule> formules;
 	public Long getId() {
 		return id;
