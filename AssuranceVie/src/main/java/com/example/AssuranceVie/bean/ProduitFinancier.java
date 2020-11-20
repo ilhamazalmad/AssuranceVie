@@ -15,7 +15,7 @@ public class ProduitFinancier {
 	private Long id;
 	private String libelle;
 	private String code;
-	@OneToMany(mappedBy="produitfinancier")
+	@OneToMany(mappedBy="produitFinancier")
 	private List <Formule> formules;
 	public Long getId() {
 		return id;

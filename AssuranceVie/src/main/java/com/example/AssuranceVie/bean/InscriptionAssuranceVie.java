@@ -21,7 +21,7 @@ public class InscriptionAssuranceVie {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dist_id", referencedColumnName = "id")
 	private Distributeur distributeur;
-	@OneToMany(mappedBy="inscriptionassurancevie")
+	@OneToMany(mappedBy="iAV")
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
 

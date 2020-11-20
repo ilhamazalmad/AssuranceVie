@@ -20,6 +20,7 @@ public class Formule {
 	@ManyToOne
 	@JoinColumn(name="produitFinancier", nullable=false)
 	private ProduitFinancier produitFinancier;
+
 	public Long getId() {
 		return id;
 	}
