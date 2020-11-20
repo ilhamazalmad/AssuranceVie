@@ -12,4 +12,8 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 
 	@Autowired
 	InscriptionAssuranceVieProduitFinancierService 	iAVPFService;
+/*@GetMapping("/getall")
+public List<InscriptionAssuranceVieProduitFinancier> getAll(){
+	return iAVPFService.findAll();
+}*/
 }

@@ -9,19 +9,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="InscriptionAssuranceVieProduitFinancier")
 public class InscriptionAssuranceVieProduitFinancier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "iAV")
+	@JoinColumn(name = "insvie_id", referencedColumnName = "id")
 	private InscriptionAssuranceVie iAV;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produit", referencedColumnName = "id")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "prodfin_id", referencedColumnName = "id")
 	private ProduitFinancier produit ;
+
+
 	public Long getId() {
 		return id;
 	}

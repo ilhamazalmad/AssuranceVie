@@ -13,8 +13,7 @@ import com.example.AssuranceVie.dao.DistributeurDao;
 @Service
 public class DistributeurService {
 
-	@Autowired
-	DistributeurDao distributeurDao;
+	@Autowired DistributeurDao distributeurDao;
 	
 	public Distributeur findByReference(String reference) {
 		return distributeurDao.findByReference(reference);

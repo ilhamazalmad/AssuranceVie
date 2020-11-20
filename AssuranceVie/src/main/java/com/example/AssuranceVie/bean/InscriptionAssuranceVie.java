@@ -3,6 +3,7 @@ package com.example.AssuranceVie.bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="InscriptionAssuranceVie")
 public class InscriptionAssuranceVie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,12 +23,15 @@ public class InscriptionAssuranceVie {
 	//private produit;
 	private Double prix;
 	private Date dateInscription;
-	@ManyToOne
-    @JoinColumn(name="distributeur", nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "distrib_id", referencedColumnName = "id")
 	private Distributeur distributeur;
-	 @OneToMany
-	 @JoinColumn(name = "iAVPF")
+	
+	@OneToMany(mappedBy="InscriptionAssuranceVie")
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
+
+
+
 	public Long getId() {
 		return id;
 	}

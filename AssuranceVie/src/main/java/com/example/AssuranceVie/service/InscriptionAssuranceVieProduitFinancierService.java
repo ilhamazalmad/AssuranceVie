@@ -10,4 +10,5 @@ public class InscriptionAssuranceVieProduitFinancierService {
 
 	@Autowired
 	InscriptionAssuranceVieProduitFinancierDao  iAVPFDao;
+	
 }
