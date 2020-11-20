@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ProduitFinancier {
@@ -15,6 +17,8 @@ public class ProduitFinancier {
 	private Long id;
 	private String libelle;
 	private String code;
+	@OneToMany
+	@JoinColumn(name = "formule")
 	private List <Formule> formules;
 	public Long getId() {
 		return id;

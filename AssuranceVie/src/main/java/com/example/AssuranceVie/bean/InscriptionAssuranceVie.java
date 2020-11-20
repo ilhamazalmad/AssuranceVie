@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class InscriptionAssuranceVie {
@@ -17,7 +20,11 @@ public class InscriptionAssuranceVie {
 	//private produit;
 	private Double prix;
 	private Date dateInscription;
+	@ManyToOne
+    @JoinColumn(name="distributeur", nullable=false)
 	private Distributeur distributeur;
+	 @OneToMany
+	 @JoinColumn(name = "iAVPF")
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 	public Long getId() {
 		return id;
