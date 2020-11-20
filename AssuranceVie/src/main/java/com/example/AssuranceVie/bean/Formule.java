@@ -1,12 +1,14 @@
 package com.example.AssuranceVie.bean;
 
+import javax.persistence.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Table(name="Formule")
+@Table(name="formule")
 public class Formule {
 
 	@Id
@@ -15,6 +17,8 @@ public class Formule {
 	private String reference;
 	private String libelle;
 	private Double prix;
+	@ManyToOne
+	@JoinColumn(name="produitFinancier", nullable=false)
 	private ProduitFinancier produitFinancier;
 	public Long getId() {
 		return id;

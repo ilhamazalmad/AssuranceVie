@@ -1,15 +1,14 @@
 package com.example.AssuranceVie.bean;
 
+
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@Table(name="InscriptionAssuranceVie")
+@Table(name="inscriptionassurancevie")
 public class InscriptionAssuranceVie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +17,11 @@ public class InscriptionAssuranceVie {
 	//private produit;
 	private Double prix;
 	private Date dateInscription;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "distrib_id", referencedColumnName = "id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dist_id", referencedColumnName = "id")
 	private Distributeur distributeur;
-	@OneToMany(mappedBy="InscriptionAssuranceVie")
+	@OneToMany(mappedBy="inscriptionassurancevie")
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
 
