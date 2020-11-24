@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +28,7 @@ public class ProduitFinancier {
 	private String code;
 
 	@OneToMany(mappedBy="produitFinancier",cascade = CascadeType.MERGE)
+	@JsonIgnore
 	private List <Formule> formules;
 	public Long getId() {
 		return id;

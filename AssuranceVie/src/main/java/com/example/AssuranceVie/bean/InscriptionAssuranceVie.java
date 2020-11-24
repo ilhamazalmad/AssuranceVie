@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -32,6 +35,7 @@ public class InscriptionAssuranceVie {
 	private Distributeur distributeur;
 
 	@OneToMany(mappedBy="iAV")
+	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
 

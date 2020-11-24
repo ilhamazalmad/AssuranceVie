@@ -27,8 +27,56 @@ public class InscriptionAssuranceVieProduitFinancier {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "produit", referencedColumnName = "id")
 	private ProduitFinancier produit ;
+	private String policeAssurance;
+	@ManyToOne
+	private Distributeur distributeur;
+	private Double prix;
+	@ManyToOne
+	private Formule formule;
+	@ManyToOne
+	private EtatInscription etatInscription;
+	
 
-
+	
+	public EtatInscription getEtatInscription() {
+		return etatInscription;
+	}
+	public void setEtatInscription(EtatInscription etatInscription) {
+		this.etatInscription = etatInscription;
+	}
+	public Formule getFormule() {
+		return formule;
+	}
+	public void setFormule(Formule formule) {
+		this.formule = formule;
+	}
+	public InscriptionAssuranceVie getiAV() {
+		return iAV;
+	}
+	public void setiAV(InscriptionAssuranceVie iAV) {
+		this.iAV = iAV;
+	}
+	public String getPoliceAssurance() {
+		return policeAssurance;
+	}
+	public void setPoliceAssurance(String policeAssurance) {
+		this.policeAssurance = policeAssurance;
+	}
+	public Distributeur getDistributeur() {
+		return distributeur;
+	}
+	public void setDistributeur(Distributeur distributeur) {
+		this.distributeur = distributeur;
+	}
+	public Double getPrix() {
+		return prix;
+	}
+	public void setPrix(Double prix) {
+		this.prix = prix;
+	}
+	public void setProduit(ProduitFinancier produit) {
+		this.produit = produit;
+	}
 	public Long getId() {
 		return id;
 	}
