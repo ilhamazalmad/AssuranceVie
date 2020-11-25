@@ -18,10 +18,7 @@ public class InscriptionAssuranceVieRest {
 
 	@Autowired
 	InscriptionAssuranceVieService iAVService;
-	@GetMapping("find/distID/{distID}")
-	List<InscriptionAssuranceVie> findAllByDistributeur_Id(@PathVariable Long distID){
-		return iAVService.findAllByDistributeur_Id(distID);
-	}
+	
 	@GetMapping("find/reference/{reference}")
 	List<InscriptionAssuranceVie> findAllByReference(@PathVariable  String  reference){
 		return iAVService.findByReference(reference);

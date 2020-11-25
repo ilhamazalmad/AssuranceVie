@@ -29,11 +29,7 @@ public class InscriptionAssuranceVie {
 	//private produit;
 	private Double prix;
 	private Date dateInscription;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dist_id", referencedColumnName = "id")
-	private Distributeur distributeur;
-
+	//private Distributeur distributeur;
 	@OneToMany(mappedBy="iAV")
 	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
@@ -64,12 +60,7 @@ public class InscriptionAssuranceVie {
 	public void setDateInscription(Date dateInscription) {
 		this.dateInscription = dateInscription;
 	}
-	public Distributeur getDistributeur() {
-		return distributeur;
-	}
-	public void setDistributeur(Distributeur distributeur) {
-		this.distributeur = distributeur;
-	}
+	
 	public List<InscriptionAssuranceVieProduitFinancier> getIAVPF() {
 		return iAVPF;
 	}
@@ -78,26 +69,23 @@ public class InscriptionAssuranceVie {
 		this.iAVPF = iAVPF;
 	}
 	public InscriptionAssuranceVie(Long id, String reference, Double prix, Date dateInscription,
-			Distributeur distributeur,List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.prix = prix;
 		this.dateInscription = dateInscription;
-		this.distributeur = distributeur;
 		this.iAVPF = iAVPF;
 	}
 	public InscriptionAssuranceVie() {
 		super();
 	}
 	public InscriptionAssuranceVie(String reference, Double prix, Date dateInscription,
-			Distributeur distributeur,
 			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		super();
 		this.reference = reference;
 		this.prix = prix;
 		this.dateInscription = dateInscription;
-		this.distributeur = distributeur;
 		this.iAVPF = iAVPF;
 	}
 	

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public interface InscriptionAssuranceVieDao extends CrudRepository<InscriptionAssuranceVie,Long> {
-List<InscriptionAssuranceVie> findAllByDistributeur_Id(Long dID);
 List<InscriptionAssuranceVie> findByDateInscription(Date datins);
 InscriptionAssuranceVie findInscriptionAssuranceVieByPrix(Double price);
     List<InscriptionAssuranceVie> findByReference(String Ref);

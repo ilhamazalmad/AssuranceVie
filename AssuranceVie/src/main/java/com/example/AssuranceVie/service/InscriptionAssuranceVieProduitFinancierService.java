@@ -32,7 +32,11 @@ public class InscriptionAssuranceVieProduitFinancierService {
 
     }
 
-    public int save(InscriptionAssuranceVieProduitFinancier iavpf) {
+   
+    public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(Long dID) {
+	return inscriptionAssuranceVieProduitFinancierDao.findAllByDistributeur_Id(dID);
+}
+	public int save(InscriptionAssuranceVieProduitFinancier iavpf) {
 
             inscriptionAssuranceVieProduitFinancierDao.save(iavpf);
             return 1;

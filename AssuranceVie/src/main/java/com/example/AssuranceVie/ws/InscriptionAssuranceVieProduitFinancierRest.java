@@ -18,6 +18,10 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 
 @Autowired
     InscriptionAssuranceVieProduitFinancierService iavfs;
+	@GetMapping("find/distID/{distID}")
+	List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(@PathVariable Long distID){
+		return iavfs.findAllByDistributeur_Id(distID);
+	}
     @GetMapping("find/produit/{produit}")
     List<InscriptionAssuranceVieProduitFinancier> findByProduit_Id(@PathVariable Long produit){
         return iavfs.findByProduit_Id(produit);

@@ -17,9 +17,7 @@ public class InscriptionAssuranceVieService {
 
 	@Autowired
 	InscriptionAssuranceVieDao iAVDao;
-	public List<InscriptionAssuranceVie> findAllByDistributeur_Id(Long id){
-		return iAVDao.findAllByDistributeur_Id(id);
-	}
+	
 public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
 		return iAVDao.findByDateInscription(Dins);
 
@@ -30,17 +28,18 @@ public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
 	public  InscriptionAssuranceVie findByPrix(Double pr){
 		return iAVDao.findInscriptionAssuranceVieByPrix(pr);
 	 }
-public  List<InscriptionAssuranceVie> findAll(){
+	public  List<InscriptionAssuranceVie> findAll(){
 		return (List<InscriptionAssuranceVie>) iAVDao.findAll();
 }
-public int save(InscriptionAssuranceVie ins){
-	if (findByReference(ins.getReference())==null)
-	{
+	public int save(InscriptionAssuranceVie ins){
+	try{
 		iAVDao.save(ins);
 		return 1;
 	}
-	else
+	catch (Exception e) {
 		return -1;
+
+	}
 }
 
 	public Optional<InscriptionAssuranceVie> findById(Long id) {
