@@ -1,5 +1,6 @@
 package com.example.AssuranceVie.ws;
 
+import com.example.AssuranceVie.bean.EtatInscription;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
 import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
@@ -46,8 +47,11 @@ public class InscriptionAssuranceVieProduitFinancierRest {
         return iavfs.findById(ID);
 
     }
-
-    @DeleteMapping("/delete/id/{id}")
+    @PutMapping("update/{id}/{etat}")
+    public void updateEtat(@PathVariable Long id,@PathVariable  Long etat) {
+		iavfs.updateEtat(id, etat);
+	}
+	@DeleteMapping("/delete/id/{id}")
     public void deleteById(@PathVariable Long id) {
         iavfs.deleteById(id);
     }
@@ -56,5 +60,14 @@ public class InscriptionAssuranceVieProduitFinancierRest {
     public int save(@RequestBody InscriptionAssuranceVieProduitFinancier insvie) {
         return iavfs.save(insvie);
     }
+    @DeleteMapping("/delete/iav/{id}")
+	public void deleteByiAV_Id(Long id) {
+		iavfs.deleteByiAV_Id(id);
+	}
+	@GetMapping("find/{id}")
+	public Optional<InscriptionAssuranceVieProduitFinancier> findById(Long id) {
+		return iavfs.findById(id);
+	}
 
+    
 }

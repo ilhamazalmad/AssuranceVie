@@ -1,5 +1,6 @@
 package com.example.AssuranceVie.service;
 
+import com.example.AssuranceVie.bean.EtatInscription;
 import com.example.AssuranceVie.bean.Formule;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.AssuranceVie.dao.InscriptionAssuranceVieProduitFinancierDao;
+
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -31,9 +34,16 @@ public class InscriptionAssuranceVieProduitFinancierService {
         return inscriptionAssuranceVieProduitFinancierDao.findByiAV_Id(id);
 
     }
-
    
-    public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(Long dID) {
+   @Transactional
+    public void updateEtat(Long id, Long etat) {
+	inscriptionAssuranceVieProduitFinancierDao.updateEtat(id, etat);
+}
+   @Transactional(propagation = Propagation.NESTED)
+	public void deleteByiAV_Id(Long id) {
+	 inscriptionAssuranceVieProduitFinancierDao.deleteByiAV_Id(id);
+}
+	public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(Long dID) {
 	return inscriptionAssuranceVieProduitFinancierDao.findAllByDistributeur_Id(dID);
 }
 	public int save(InscriptionAssuranceVieProduitFinancier iavpf) {
@@ -50,7 +60,9 @@ public class InscriptionAssuranceVieProduitFinancierService {
     public Optional<InscriptionAssuranceVieProduitFinancier> findById(Long id) {
         return inscriptionAssuranceVieProduitFinancierDao.findById(id);
     }
+    
 
+    
     @Transactional
     public void deleteById(Long id) {
         inscriptionAssuranceVieProduitFinancierDao.deleteById(id);

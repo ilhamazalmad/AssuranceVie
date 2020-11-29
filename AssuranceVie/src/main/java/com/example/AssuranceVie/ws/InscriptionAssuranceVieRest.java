@@ -45,6 +45,10 @@ public class InscriptionAssuranceVieRest {
 	public void deleteById(@PathVariable Long id) {
 		iAVService.deleteById(id);
 	}
+	@PutMapping("update/{id}")
+	public void update(@PathVariable Long id,@RequestBody InscriptionAssuranceVie inscriptionAssuranceVie) {
+		iAVService.update(id, inscriptionAssuranceVie);
+	}
 
 
 
