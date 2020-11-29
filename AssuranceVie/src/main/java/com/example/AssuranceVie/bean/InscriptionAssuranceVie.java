@@ -30,7 +30,7 @@ public class InscriptionAssuranceVie {
 	private Double prix;
 	private Date dateInscription;
 	//private Distributeur distributeur;
-	@OneToMany(mappedBy="iAV")
+	@OneToMany(mappedBy="iAV",cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
