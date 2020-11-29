@@ -27,13 +27,15 @@ public class InscriptionAssuranceVie {
 	private Long id;
 	private String reference;
 	//private produit;
+	@ManyToOne
+	@JoinColumn(name="client", nullable=false)
+	private Client client;
 	private Double prix;
 	private Date dateInscription;
 	//private Distributeur distributeur;
 	@OneToMany(mappedBy="iAV",cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
-
 
 
 	public Long getId() {
@@ -61,18 +63,24 @@ public class InscriptionAssuranceVie {
 		this.dateInscription = dateInscription;
 	}
 	
-	public List<InscriptionAssuranceVieProduitFinancier> getIAVPF() {
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public List<InscriptionAssuranceVieProduitFinancier> getiAVPF() {
 		return iAVPF;
 	}
-	public void setIAVPF(
-			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+	public void setiAVPF(List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		this.iAVPF = iAVPF;
 	}
-	public InscriptionAssuranceVie(Long id, String reference, Double prix, Date dateInscription,
+	public InscriptionAssuranceVie(Long id, String reference, Client client, Double prix, Date dateInscription,
 			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		super();
 		this.id = id;
 		this.reference = reference;
+		this.client = client;
 		this.prix = prix;
 		this.dateInscription = dateInscription;
 		this.iAVPF = iAVPF;
@@ -80,14 +88,7 @@ public class InscriptionAssuranceVie {
 	public InscriptionAssuranceVie() {
 		super();
 	}
-	public InscriptionAssuranceVie(String reference, Double prix, Date dateInscription,
-			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
-		super();
-		this.reference = reference;
-		this.prix = prix;
-		this.dateInscription = dateInscription;
-		this.iAVPF = iAVPF;
-	}
+	
 	
 	
 }

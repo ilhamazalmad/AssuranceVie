@@ -55,6 +55,7 @@ public class ProduitFinancier {
 	public void setFormules(List<Formule> formules) {
 		this.formules = formules;
 	}
+	
 	public ProduitFinancier(Long id, String libelle, String code, List<Formule> formules) {
 		super();
 		this.id = id;

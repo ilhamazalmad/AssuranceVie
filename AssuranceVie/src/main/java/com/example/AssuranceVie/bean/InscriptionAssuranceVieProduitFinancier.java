@@ -109,6 +109,8 @@ public class InscriptionAssuranceVieProduitFinancier {
 	public void setProduitFinancier(ProduitFinancier produit) {
 		this.produit = produit;
 	}
+	
+	
 	public InscriptionAssuranceVieProduitFinancier(Long id, InscriptionAssuranceVie iAV,
 			ProduitFinancier produit) {
 		super();
