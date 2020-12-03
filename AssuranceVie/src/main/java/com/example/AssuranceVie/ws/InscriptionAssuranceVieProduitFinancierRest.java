@@ -5,7 +5,13 @@ import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
 import com.example.AssuranceVie.bean.SummaryPOJO;
 import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.repo.InputStreamResource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.AssuranceVie.service.InscriptionAssuranceVieProduitFinancierService;
@@ -67,13 +73,17 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 response.setContentType("application/x-download");
 response.setHeader("Content-Disposition",String.format("attachement; filename=\"EngagementCli.pdf\""));
         OutputStream out=response.getOutputStream();
-       iavfs.createPdfReport(IDP,out);
+       JasperPrint print=iavfs.createPdfReport(IDP);
+        JasperExportManager.exportReportToPdfStream(print, out);
     }
 
     @DeleteMapping("/delete/id/{id}")
     public void deleteById(@PathVariable Long id) {
         iavfs.deleteById(id);
     }
+
+
+
 
     @PostMapping("/save")
     public int save(@RequestBody InscriptionAssuranceVieProduitFinancier insvie) {

@@ -128,7 +128,7 @@ public class InscriptionAssuranceVieProduitFinancierService {
     }
 
   // Method to create the pdf file using the employee list datasource.
-  public int createPdfReport(Long ID, OutputStream stram) throws JRException {
+  public JasperPrint createPdfReport(Long ID) throws JRException {
       final List<SummaryPOJO> sumry=findAllforReport(ID);
       final List<IAVPFsimpl> prods=findAltforReport(ID);
       // Fetching the .jrxml file from the resources folder.
@@ -149,8 +149,8 @@ public class InscriptionAssuranceVieProduitFinancierService {
       final JasperPrint print = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
       // If users want to download the pdf file on the browser, then they need to use the "Content-Disposition" technique.
       // Export the report to a PDF file.
-      JasperExportManager.exportReportToPdfStream(print, stram);
-return 1;
+
+return print;
   }
 
 
