@@ -37,6 +37,16 @@ public class InscriptionAssuranceVie {
 	//@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
+    public InscriptionAssuranceVie(String ref3, double v, Date s) {
+    	this.reference=ref3;
+    	this.prix=v;
+
+    	this.dateInscription=s;
+    }
+
+	public InscriptionAssuranceVie(long id) {
+    	this.id=id;
+	}
 
 	public Long getId() {
 		return id;

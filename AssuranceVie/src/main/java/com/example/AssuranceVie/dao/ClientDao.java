@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.example.AssuranceVie.bean.Client;
 
 @Repository
-public interface ClientDao extends CrudRepository<Client,Long> {
+public interface ClientDao extends JpaRepository<Client,Long> {
+    public Client findByCin(String cin);
 
 }

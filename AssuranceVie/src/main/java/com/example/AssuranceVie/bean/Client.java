@@ -44,9 +44,27 @@ public class Client {
 		this.copieCin = copieCin;
 		this.iAV = iAV;
 	}
+	public Client( String nom, String prenom, String adresse, Long telephone, String cin, Date dateNaissance,
+				  String copieCin, List<InscriptionAssuranceVie> iAV) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.cin = cin;
+		this.dateNaissance = dateNaissance;
+		this.copieCin = copieCin;
+		this.iAV = iAV;
+	}
 	public Client() {
 		super();
 	}
+
+	public Client(Long i) {
+		this.id = i;
+	}
+
 	public Long getId() {
 		return id;
 	}

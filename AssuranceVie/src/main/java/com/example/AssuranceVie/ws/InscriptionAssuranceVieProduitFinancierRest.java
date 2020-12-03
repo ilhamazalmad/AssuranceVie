@@ -1,9 +1,10 @@
 package com.example.AssuranceVie.ws;
 
-import com.example.AssuranceVie.bean.EtatInscription;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
+import com.example.AssuranceVie.bean.SummaryPOJO;
 import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,20 @@ public class InscriptionAssuranceVieProduitFinancierRest {
     public void updateEtat(@PathVariable Long id,@PathVariable  Long etat) {
 		iavfs.updateEtat(id, etat);
 	}
-	@DeleteMapping("/delete/id/{id}")
+
+
+    @GetMapping("find/IDP/{IDP}")
+    List<SummaryPOJO> findAllForReport(@PathVariable Long IDP){
+        return iavfs.findAllforReport(IDP);
+
+    }
+    @GetMapping("/report/IDP/{IDP}")
+    public int generateReport(@PathVariable Long IDP) throws JRException {
+
+       return iavfs.createPdfReport(IDP);
+    }
+
+    @DeleteMapping("/delete/id/{id}")
     public void deleteById(@PathVariable Long id) {
         iavfs.deleteById(id);
     }
@@ -69,5 +83,4 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 		return iavfs.findById(id);
 	}
 
-    
 }

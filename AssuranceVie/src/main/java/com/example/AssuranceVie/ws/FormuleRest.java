@@ -41,6 +41,7 @@ public class FormuleRest {
 
 	@PostMapping("/save")
 	public int save(@RequestBody Formule formule) {
+
 		return formuleService.save(formule);
 	}
 

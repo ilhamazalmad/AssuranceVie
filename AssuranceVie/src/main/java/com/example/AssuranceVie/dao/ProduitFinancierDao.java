@@ -16,5 +16,5 @@ public interface ProduitFinancierDao extends JpaRepository<ProduitFinancier,Long
 
 	public ProduitFinancier findByLibelle(String libelle);
 	public ProduitFinancier findByCode(String code);
-	//public void addFormule(Long idProd,Formule formule);	
+
 }
