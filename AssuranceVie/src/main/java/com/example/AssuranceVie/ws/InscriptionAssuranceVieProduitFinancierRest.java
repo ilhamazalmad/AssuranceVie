@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.AssuranceVie.service.InscriptionAssuranceVieProduitFinancierService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,9 +63,11 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 
     }
     @GetMapping("/report/IDP/{IDP}")
-    public int generateReport(@PathVariable Long IDP) throws JRException {
-
-       return iavfs.createPdfReport(IDP);
+    public void generateReport(HttpServletResponse response, @PathVariable Long IDP) throws JRException, IOException {
+response.setContentType("application/x-download");
+response.setHeader("Content-Disposition",String.format("attachement; filename=\"EngagementCli.pdf\""));
+        OutputStream out=response.getOutputStream();
+       iavfs.createPdfReport(IDP,out);
     }
 
     @DeleteMapping("/delete/id/{id}")

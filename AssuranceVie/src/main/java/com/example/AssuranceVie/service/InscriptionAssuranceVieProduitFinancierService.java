@@ -2,6 +2,7 @@ package com.example.AssuranceVie.service;
 
 import com.example.AssuranceVie.bean.*;
 import com.example.AssuranceVie.dao.InscriptionAssuranceVieDao;
+import com.lowagie.text.pdf.codec.Base64;
 import net.sf.jasperreports.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 
@@ -126,7 +128,7 @@ public class InscriptionAssuranceVieProduitFinancierService {
     }
 
   // Method to create the pdf file using the employee list datasource.
-  public int createPdfReport(Long ID) throws JRException {
+  public int createPdfReport(Long ID, OutputStream stram) throws JRException {
       final List<SummaryPOJO> sumry=findAllforReport(ID);
       final List<IAVPFsimpl> prods=findAltforReport(ID);
       // Fetching the .jrxml file from the resources folder.
@@ -147,7 +149,7 @@ public class InscriptionAssuranceVieProduitFinancierService {
       final JasperPrint print = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
       // If users want to download the pdf file on the browser, then they need to use the "Content-Disposition" technique.
       // Export the report to a PDF file.
-      JasperExportManager.exportReportToPdfFile(print, "/EngagementClient"+sumry.get(0).getCin()+".pdf");
+      JasperExportManager.exportReportToPdfStream(print, stram);
 return 1;
   }
 
