@@ -49,7 +49,21 @@ public class InscriptionAssuranceVieRest {
 	public void update(@PathVariable Long id,@RequestBody InscriptionAssuranceVie inscriptionAssuranceVie) {
 		iAVService.update(id, inscriptionAssuranceVie);
 	}
-
+	@GetMapping("/total/{id}")
+	public Double total(@PathVariable Long id) {
+		return iAVService.total(id);
+	}
+	@GetMapping("/totalConfirme/{id}")
+	public Double totalConfirme(@PathVariable Long id) {
+		return iAVService.totalConfirme(id);
+	}
+	@GetMapping("/totalAttente/{id}")
+	public Double totalAttente(@PathVariable Long id) {
+		return iAVService.totalAttente(id);
+	}
+	
+	
+	
 
 
 }

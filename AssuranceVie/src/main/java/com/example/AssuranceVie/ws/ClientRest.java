@@ -23,9 +23,20 @@ public class ClientRest {
 	ClientService clientService;
 
 	@PostMapping("/save")
-	public Client  save(@RequestBody Client client) {
+	public int  save(@RequestBody Client client) {
 		return clientService.save(client);
 	}
+
+	@GetMapping("/find/cin/{cin}")
+	public Client findByCin(@PathVariable String cin) {
+		return clientService.findByCin(cin);
+	}
+
+	@GetMapping("/find/telephone/{telephone}")
+	public Client findByTelephone(@PathVariable Long telephone) {
+		return clientService.findByTelephone(telephone);
+	}
+
 
 	@GetMapping("/find")
 	public Iterable<Client> findAll() {

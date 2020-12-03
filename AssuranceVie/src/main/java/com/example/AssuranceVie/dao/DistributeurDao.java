@@ -9,7 +9,7 @@ import com.example.AssuranceVie.bean.Distributeur;
 
 
 @Repository
-public interface DistributeurDao extends CrudRepository<Distributeur,Long> {
+public interface DistributeurDao extends JpaRepository<Distributeur,Long> {
 
 	public Distributeur findByReference(String reference);
 	public Distributeur findByLibelle(String libelle);

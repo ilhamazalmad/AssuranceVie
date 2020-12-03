@@ -23,6 +23,10 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 	List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(@PathVariable Long distID){
 		return iavfs.findAllByDistributeur_Id(distID);
 	}
+	@GetMapping("find/dist/{id}")
+	List<InscriptionAssuranceVieProduitFinancier> findAllForDistributeur(@PathVariable Long id){
+		return iavfs.findAllByDistributeur_Id(id);
+	}
     @GetMapping("find/produit/{produit}")
     List<InscriptionAssuranceVieProduitFinancier> findByProduit_Id(@PathVariable Long produit){
         return iavfs.findByProduit_Id(produit);
@@ -33,11 +37,7 @@ public class InscriptionAssuranceVieProduitFinancierRest {
         return iavfs.findByIAV_Id(IAV);
 
     }
-    @GetMapping("find/IAV/reference/{reference}")
-    List<InscriptionAssuranceVieProduitFinancier> findByReference(@PathVariable String reference){
-        return iavfs.findByIAV_Reference(reference);
-
-    }
+    
     @GetMapping("find/all")
     List<InscriptionAssuranceVieProduitFinancier> findAll(){
         return iavfs.findAll();
@@ -61,11 +61,16 @@ public class InscriptionAssuranceVieProduitFinancierRest {
         return iavfs.save(insvie);
     }
     @DeleteMapping("/delete/iav/{id}")
-	public void deleteByiAV_Id(Long id) {
+	public void deleteByiAV_Id(@PathVariable Long id) {
 		iavfs.deleteByiAV_Id(id);
 	}
+    
+    @PutMapping("affilier/{id}/{dist_id}")
+	public void affilier(@PathVariable Long id, @PathVariable Long dist_id) {
+		iavfs.affilier(id, dist_id);
+	}
 	@GetMapping("find/{id}")
-	public Optional<InscriptionAssuranceVieProduitFinancier> findById(Long id) {
+	public Optional<InscriptionAssuranceVieProduitFinancier> findById(@PathVariable Long id) {
 		return iavfs.findById(id);
 	}
 

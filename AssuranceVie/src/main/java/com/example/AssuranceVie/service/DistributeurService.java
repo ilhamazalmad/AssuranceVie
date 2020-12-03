@@ -15,13 +15,6 @@ public class DistributeurService {
 
 	@Autowired DistributeurDao distributeurDao;
 	
-	public Distributeur findByReference(String reference) {
-		return distributeurDao.findByReference(reference);
-	}
-
-	public Distributeur findByLibelle(String libelle) {
-		return distributeurDao.findByLibelle(libelle);
-	}
 	
 	public int save(Distributeur distributeur) {
 		if (findByReference(distributeur.getReference())==null && findByLibelle(distributeur.getLibelle())==null)
@@ -42,6 +35,14 @@ public class DistributeurService {
 		return distributeurDao.findById(id);
 	}
 
+	public Distributeur findByReference(String reference) {
+		return distributeurDao.findByReference(reference);
+	}
+
+	public Distributeur findByLibelle(String libelle) {
+		return distributeurDao.findByLibelle(libelle);
+	}
+	
 	@Transactional
 	public void deleteById(Long id) {
 		distributeurDao.deleteById(id);

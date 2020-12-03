@@ -23,19 +23,7 @@ public class InscriptionAssuranceVieService {
 	@Autowired
 	InscriptionAssuranceVieProduitFinancierDao iAVPFDao;
 	
-public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
-		return iAVDao.findByDateInscription(Dins);
 
-}
-   public  List<InscriptionAssuranceVie> findByReference(String ref){
-		return iAVDao.findByReference(ref);
-	 }
-	public  InscriptionAssuranceVie findByPrix(Double pr){
-		return iAVDao.findInscriptionAssuranceVieByPrix(pr);
-	 }
-	public  List<InscriptionAssuranceVie> findAll(){
-		return (List<InscriptionAssuranceVie>) iAVDao.findAll();
-}
 	@Transactional(propagation = Propagation.NESTED)
 	public int save(InscriptionAssuranceVie ins){
 	try{
@@ -64,6 +52,17 @@ public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
 		save(inscriptionAssuranceVie);
 
 	}
+	
+	
+	public Double total(Long id) {
+		return iAVDao.total(id);
+	}
+	public Double totalConfirme(Long id) {
+		return iAVDao.totalConfirme(id);
+	}
+	public Double totalAttente(Long id) {
+		return iAVDao.totalAttente(id);
+	}
 	public Optional<InscriptionAssuranceVie> findById(Long id) {
 		return iAVDao.findById(id);
 	}
@@ -72,6 +71,19 @@ public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
 	public void deleteById(Long id) {
 		iAVDao.deleteById(id);
 	}
+	public List<InscriptionAssuranceVie> findByDateInscription(Date Dins){
+		return iAVDao.findByDateInscription(Dins);
+
+}
+   public  List<InscriptionAssuranceVie> findByReference(String ref){
+		return iAVDao.findByReference(ref);
+	 }
+	public  InscriptionAssuranceVie findByPrix(Double pr){
+		return iAVDao.findInscriptionAssuranceVieByPrix(pr);
+	 }
+	public  List<InscriptionAssuranceVie> findAll(){
+		return (List<InscriptionAssuranceVie>) iAVDao.findAll();
+}
 
 
 

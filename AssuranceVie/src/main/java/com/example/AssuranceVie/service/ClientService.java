@@ -16,9 +16,24 @@ public class ClientService {
 	
 	@Autowired ClientDao clientDao;
 
-	public Client save(Client client) {
-		return clientDao.save(client);
+	public int save(Client client) {
+		if(client != null && findByCin(client.getCin()) == null && findByTelephone(client.getTelephone()) == null ) {
+			clientDao.save(client);
+			return 1;
+		}	 
+		else return -1;
 	}
+
+	
+	public Client findByCin(String cin) {
+		return clientDao.findByCin(cin);
+	}
+
+
+	public Client findByTelephone(Long telephone) {
+		return clientDao.findByTelephone(telephone);
+	}
+
 
 	public Optional<Client> findById(Long id) {
 		return clientDao.findById(id);

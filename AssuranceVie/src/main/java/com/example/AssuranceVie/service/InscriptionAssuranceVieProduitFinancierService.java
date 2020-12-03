@@ -4,6 +4,7 @@ import com.example.AssuranceVie.bean.EtatInscription;
 import com.example.AssuranceVie.bean.Formule;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
+import com.example.AssuranceVie.dao.EtatInscriptionDao;
 import com.example.AssuranceVie.dao.InscriptionAssuranceVieDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,14 @@ public class InscriptionAssuranceVieProduitFinancierService {
 
 	@Autowired
     InscriptionAssuranceVieProduitFinancierDao inscriptionAssuranceVieProduitFinancierDao;
+	@Autowired
+	EtatInscriptionDao etatInscriptionDao;
 
+	public int save(InscriptionAssuranceVieProduitFinancier iavpf) {
+
+        inscriptionAssuranceVieProduitFinancierDao.save(iavpf);
+        return 1;
+	}
 
    public List<InscriptionAssuranceVieProduitFinancier> findByProduit_Id(Long id){
         return inscriptionAssuranceVieProduitFinancierDao.findByProduit_Id(id);
@@ -46,13 +54,7 @@ public class InscriptionAssuranceVieProduitFinancierService {
 	public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(Long dID) {
 	return inscriptionAssuranceVieProduitFinancierDao.findAllByDistributeur_Id(dID);
 }
-	public int save(InscriptionAssuranceVieProduitFinancier iavpf) {
-
-            inscriptionAssuranceVieProduitFinancierDao.save(iavpf);
-            return 1;
-
-    }
-
+	
     public List<InscriptionAssuranceVieProduitFinancier> findAll() {
         return inscriptionAssuranceVieProduitFinancierDao.findAll();
     }
@@ -61,11 +63,24 @@ public class InscriptionAssuranceVieProduitFinancierService {
         return inscriptionAssuranceVieProduitFinancierDao.findById(id);
     }
     
-
     
+
     @Transactional
-    public void deleteById(Long id) {
-        inscriptionAssuranceVieProduitFinancierDao.deleteById(id);
+    public void affilier(Long id, Long dist_id) {
+		 inscriptionAssuranceVieProduitFinancierDao.affilier(id, dist_id);
+	}
+
+	public List<InscriptionAssuranceVieProduitFinancier> findAllForDistributeur(Long id) {
+		return inscriptionAssuranceVieProduitFinancierDao.findAllForDistributeur(id);
+	}
+
+	@Transactional
+    public int deleteById(Long id) {
+        if(etatInscriptionDao.etatOfProduit(id).getId()!=3) {
+        	inscriptionAssuranceVieProduitFinancierDao.deleteById(id);
+        	return 1;
+        }
+        else return -1;
     }
 
 

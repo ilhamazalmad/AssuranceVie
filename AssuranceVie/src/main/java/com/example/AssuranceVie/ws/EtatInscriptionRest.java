@@ -40,5 +40,10 @@ public class EtatInscriptionRest {
 	public void deleteById(@PathVariable Long id) {
 		etatInscriptionService.deleteById(id);
 	}
+	@GetMapping("/find/produit/{id}")
+	public EtatInscription etatOfProduit(@PathVariable Long id) {
+		return etatInscriptionService.etatOfProduit(id);
+	}
+	
 	
 }
