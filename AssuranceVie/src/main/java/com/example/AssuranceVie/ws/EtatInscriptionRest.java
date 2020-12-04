@@ -22,7 +22,7 @@ public class EtatInscriptionRest {
 	EtatInscriptionService etatInscriptionService;
 
 	@PostMapping("/save")
-	public EtatInscription save(@RequestBody EtatInscription etatInscription) {
+	public int save(@RequestBody EtatInscription etatInscription) {
 		return etatInscriptionService.save(etatInscription);
 	}
 

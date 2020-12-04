@@ -30,6 +30,11 @@ public class ProduitFinancier {
 	@OneToMany(mappedBy="produitFinancier",cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List <Formule> formules;
+
+	public ProduitFinancier(long id) {
+		this.id=id;
+	}
+
 	public Long getId() {
 		return id;
 	}

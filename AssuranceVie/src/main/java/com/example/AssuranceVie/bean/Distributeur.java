@@ -16,7 +16,12 @@ public class Distributeur {
 	private String reference;
 	private String libelle;
 
-	public Long getId() {
+    public Distributeur(String r) {
+
+    	this.reference=r;
+    }
+
+    public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {

@@ -19,7 +19,7 @@ public class EtatInscriptionService {
 	public int save(EtatInscription etatInscription) {
 		if (findByReference(etatInscription.getReference())==null && findByLibelle(etatInscription.getLibelle())==null)
 		{
-			etatInscriptionDao.save(etatInscription);s
+			etatInscriptionDao.save(etatInscription);
 			return 1;
 		}
 		else
