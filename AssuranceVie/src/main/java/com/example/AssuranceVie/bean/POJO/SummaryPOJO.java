@@ -1,4 +1,4 @@
-package com.example.AssuranceVie.bean;
+package com.example.AssuranceVie.bean.POJO;
 
 import java.util.Date;
 import java.util.List;

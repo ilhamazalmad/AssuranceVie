@@ -1,4 +1,4 @@
-package com.example.AssuranceVie.bean;
+package com.example.AssuranceVie.bean.POJO;
 
 public class IAVPFsimpl {
     private String distributeur;

@@ -1,23 +1,17 @@
 package com.example.AssuranceVie.ws;
 
-import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
-import com.example.AssuranceVie.bean.SummaryPOJO;
-import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
+import com.example.AssuranceVie.bean.POJO.SummaryPOJO;
+import com.example.AssuranceVie.service.JasperService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.repo.InputStreamResource;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.AssuranceVie.service.InscriptionAssuranceVieProduitFinancierService;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -29,6 +23,8 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 
 @Autowired
     InscriptionAssuranceVieProduitFinancierService iavfs;
+    @Autowired
+    JasperService jpserv;
 	@GetMapping("find/distID/{distID}")
 	List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(@PathVariable Long distID){
 		return iavfs.findAllByDistributeur_Id(distID);
@@ -65,15 +61,15 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 
     @GetMapping("find/IDP/{IDP}")
     List<SummaryPOJO> findAllForReport(@PathVariable Long IDP){
-        return iavfs.findAllforReport(IDP);
+        return jpserv.findAllforReport(IDP);
 
     }
     @GetMapping("/report/IDP/{IDP}")
     public void generateReport(HttpServletResponse response, @PathVariable Long IDP) throws JRException, IOException {
-response.setContentType("application/x-download");
-response.setHeader("Content-Disposition",String.format("attachement; filename=\"EngagementCli.pdf\""));
+    response.setContentType("application/x-download");
+    response.setHeader("Content-Disposition",String.format("attachement; filename=\"EngagementCli.pdf\""));
         OutputStream out=response.getOutputStream();
-       JasperPrint print=iavfs.createPdfReport(IDP);
+        JasperPrint print=jpserv.createPdfReport(IDP);
         JasperExportManager.exportReportToPdfStream(print, out);
     }
 
