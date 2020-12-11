@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.AssuranceVie.bean.Client;
 import com.example.AssuranceVie.dao.ClientDao;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,8 +21,10 @@ import java.util.List;
 
 @Service
 public class ClientService {
-	
-	@Autowired ClientDao clientDao;
+
+	@Autowired
+	ClientDao clientDao;
+
 	/*public int save(Client cli) {
 		if (clientDao.findByCin(cli.getCin()) ==null)
 		{
@@ -31,18 +34,16 @@ public class ClientService {
 		else
 			return -1;
 	}*/
-public Client findByCin(String cin){
+	public Client findByCin(String cin) {
 		return clientDao.findByCin(cin);
-}
-
-	public int save(Client client) {
-		if(client != null && findByCin(client.getCin()) == null && findByTelephone(client.getTelephone()) == null ) {
-			clientDao.save(client);
-			return 1;
-		}	 
-		else return -1;
 	}
 
+	public int save(Client client) {
+		if (client != null && findByCin(client.getCin()) == null && findByTelephone(client.getTelephone()) == null) {
+			clientDao.save(client);
+			return 1;
+		} else return -1;
+	}
 
 
 	public Client findByTelephone(Long telephone) {
@@ -63,8 +64,22 @@ public Client findByCin(String cin){
 		clientDao.deleteById(id);
 	}
 
-	
-	
-	
+	public int loginorregister(Long tel, String cin) {
+		int res=0;
+		Client clie;
+		if (tel == null || cin == null) {
+			res = -1;
+		}else if (clientDao.findByCin(cin) == null || clientDao.findByTelephone(tel) == null) {
+			res = 1;
+		}else if (clientDao.findByCin(cin) == null && clientDao.findByTelephone(tel) == null) {
+			Client cli = new Client(cin, tel);
+			clientDao.save(cli);
+			res = 2;
+		} else if (clientDao.findByCin(cin) != null && clientDao.findByTelephone(tel) != null) {
+			clie = clientDao.findByTelephone(tel);
+			res = 3;
+		}
 
+		return res;
+	}
 }

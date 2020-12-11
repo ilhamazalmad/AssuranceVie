@@ -49,6 +49,10 @@ public class ClientRest {
 	public Optional<Client> findById(@PathVariable Long id) {
 		return clientService.findById(id);
 	}
+	@GetMapping("/login/tel/{tel}/cin/{cin}")
+	public int loginclient(@PathVariable(value="tel") Long tel,@PathVariable(value="cin") String cin) {
+		return clientService.loginorregister(tel, cin);
+	}
 
 	@DeleteMapping("/find//{id}")
 	public void deleteById(@PathVariable Long id) {

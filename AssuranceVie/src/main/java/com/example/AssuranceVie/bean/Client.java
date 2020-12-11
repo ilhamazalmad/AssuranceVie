@@ -65,6 +65,11 @@ public class Client {
 		this.id = i;
 	}
 
+	public Client(String cin, Long tel) {
+		this.cin=cin;
+		this.telephone=tel;
+	}
+
 	public Long getId() {
 		return id;
 	}
