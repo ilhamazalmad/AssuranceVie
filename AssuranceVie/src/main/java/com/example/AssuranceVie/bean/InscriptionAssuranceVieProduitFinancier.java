@@ -24,20 +24,20 @@ public class InscriptionAssuranceVieProduitFinancier {
 	@JoinColumn(name="iav", nullable=false)
 	private InscriptionAssuranceVie iAV;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "produit", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "produit",  nullable=false)
 	private ProduitFinancier produit ;
 	private String policeAssurance;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dist_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "distributeur")
 	private Distributeur distributeur;
 	private Double prix;
 	@ManyToOne
 	private Formule formule;
 	@ManyToOne
+	@JoinColumn(name="etatInscription", nullable=true)
 	private EtatInscription etatInscription;
 	
-
 	
 	public InscriptionAssuranceVieProduitFinancier(Long id, InscriptionAssuranceVie iAV, ProduitFinancier produit,
 			String policeAssurance, Distributeur distributeur, Double prix, Formule formule,

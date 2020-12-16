@@ -1,10 +1,16 @@
 package com.example.AssuranceVie.bean;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="EtatInscription")
@@ -15,7 +21,9 @@ public class EtatInscription {
 	private Long id;
 	private String reference;
 	private String libelle;
-
+	@OneToMany(mappedBy="etatInscription",cascade = CascadeType.MERGE)
+	@JsonIgnore
+	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 	public Long getId() {
 		return id;
 	}

@@ -79,7 +79,7 @@ public class InscriptionAssuranceVieProduitFinancierService {
 		return inscriptionAssuranceVieProduitFinancierDao.findAllForDistributeur(id);
 	}
 
-	@Transactional
+	@Transactional(propagation = Propagation.NESTED)
     public int deleteById(Long id) {
         if(etatInscriptionDao.etatOfProduit(id).getId()!=3) {
         	inscriptionAssuranceVieProduitFinancierDao.deleteById(id);

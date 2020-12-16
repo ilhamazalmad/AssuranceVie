@@ -4,14 +4,6 @@ package com.example.AssuranceVie.bean;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,6 +22,9 @@ public class ProduitFinancier {
 	@OneToMany(mappedBy="produitFinancier",cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List <Formule> formules;
+	@OneToMany(mappedBy="produit",cascade = CascadeType.MERGE)
+	@JsonIgnore
+	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
 	public ProduitFinancier(long id) {
 		this.id=id;
@@ -61,13 +56,25 @@ public class ProduitFinancier {
 		this.formules = formules;
 	}
 	
-	public ProduitFinancier(Long id, String libelle, String code, List<Formule> formules) {
+	
+	public List<InscriptionAssuranceVieProduitFinancier> getiAVPF() {
+		return iAVPF;
+	}
+
+	public void setiAVPF(List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+		this.iAVPF = iAVPF;
+	}
+
+	public ProduitFinancier(Long id, String libelle, String code, List<Formule> formules,
+			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.code = code;
 		this.formules = formules;
+		this.iAVPF = iAVPF;
 	}
+
 	public ProduitFinancier() {
 		super();
 	}

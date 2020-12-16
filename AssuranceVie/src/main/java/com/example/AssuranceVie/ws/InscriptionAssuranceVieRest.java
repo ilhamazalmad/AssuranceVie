@@ -2,11 +2,13 @@ package com.example.AssuranceVie.ws;
 
 import com.example.AssuranceVie.bean.Distributeur;
 import com.example.AssuranceVie.bean.ProduitFinancier;
+import com.example.AssuranceVie.dto.Inscription;
 import com.example.AssuranceVie.service.InscriptionAssuranceVieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.AssuranceVie.bean.InscriptionAssuranceVie;
+import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -32,7 +34,7 @@ public class InscriptionAssuranceVieRest {
 		return iAVService.findAll();
 	}
 	@PostMapping("/save")
-	public int save(@RequestBody InscriptionAssuranceVie insav) {
+	public int save(@RequestBody Inscription insav) throws Exception{
 		return iAVService.save(insav);
 	}
 
@@ -46,8 +48,8 @@ public class InscriptionAssuranceVieRest {
 		iAVService.deleteById(id);
 	}
 	@PutMapping("update/{id}")
-	public void update(@PathVariable Long id,@RequestBody InscriptionAssuranceVie inscriptionAssuranceVie) {
-		iAVService.update(id, inscriptionAssuranceVie);
+	public int update(@PathVariable Long id,@RequestBody  List<InscriptionAssuranceVieProduitFinancier> produits) {
+		return iAVService.update(id, produits);
 	}
 	@GetMapping("/total/{id}")
 	public Double total(@PathVariable Long id) {
