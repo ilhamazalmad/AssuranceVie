@@ -3,7 +3,11 @@ package com.example.AssuranceVie.service.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class StringUtil {
     public static boolean isEmpty(String value){return value==null || value.isEmpty();}
@@ -31,7 +35,13 @@ public class StringUtil {
     }
     public static Date toDate(String value) throws ParseException{
         if (value!=null){
-        	 return new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(value);  
+        	//TimeZone tz = TimeZone.getTimeZone("UTC");
+    		//"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+    		//df.setTimeZone(tz);
+    	    //String dateString = df.format(value);
+    		return df.parse(value);
+        	 //return new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(value);  
         }
         return null;
     }
