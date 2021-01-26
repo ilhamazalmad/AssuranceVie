@@ -1,4 +1,4 @@
-package com.example.AssuranceVie.bean;
+package com.example.AssuranceVie.ws.provided.dto;
 
 import java.util.List;
 
@@ -10,25 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.example.AssuranceVie.ws.provided.dto.InscriptionAssuranceVieProduitFinancierDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name="EtatInscription")
-public class EtatInscription {
+public class EtatInscriptionDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private String id;
 	private String reference;
 	private String libelle;
-	@OneToMany(mappedBy="etatInscription",cascade = CascadeType.MERGE)
-	@JsonIgnore
-	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
-	public Long getId() {
+	private List<InscriptionAssuranceVieProduitFinancierDto> iAVPF;
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getReference() {
@@ -43,25 +36,26 @@ public class EtatInscription {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public List<InscriptionAssuranceVieProduitFinancier> getiAVPF() {
+	
+	public List<InscriptionAssuranceVieProduitFinancierDto> getiAVPF() {
 		return iAVPF;
 	}
-	public void setiAVPF(List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+	public void setiAVPF(List<InscriptionAssuranceVieProduitFinancierDto> iAVPF) {
 		this.iAVPF = iAVPF;
 	}
-	public EtatInscription() {
+	public EtatInscriptionDto() {
 		super();
 	}
-	public EtatInscription(Long id, String reference, String libelle,
-			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+	public EtatInscriptionDto(String id, String reference, String libelle,
+			List<InscriptionAssuranceVieProduitFinancierDto> iAVPF) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.libelle = libelle;
 		this.iAVPF = iAVPF;
 	}
-	public EtatInscription(String reference, String libelle,
-			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+	public EtatInscriptionDto(String reference, String libelle,
+			List<InscriptionAssuranceVieProduitFinancierDto> iAVPF) {
 		super();
 		this.reference = reference;
 		this.libelle = libelle;

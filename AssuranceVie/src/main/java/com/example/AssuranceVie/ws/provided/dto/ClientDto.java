@@ -1,4 +1,4 @@
-package com.example.AssuranceVie.bean;
+package com.example.AssuranceVie.ws.provided.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -13,28 +13,24 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name="client")
-public class Client {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+public class ClientDto {
+	
+	private String id;
 	private String nom;
 	private String prenom;
 	private String adresse;
-	private Long telephone;
+	private String telephone;
 	private String cin;
-	private Date dateNaissance;
+	private String dateNaissance;
 	private String copieCin;
 	private String pwd;
-	@OneToMany(mappedBy="client",cascade = CascadeType.MERGE)
-	@JsonIgnore
-	private List<InscriptionAssuranceVie> iAV;
+	
+	private List<InscriptionAssuranceVieDto> iAV;
  
 
 	
-	public Client(Long id, String nom, String prenom, String adresse, Long telephone, String cin, Date dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVie> iAV) {
+	public ClientDto(String id, String nom, String prenom, String adresse, String telephone, String cin, String dateNaissance,
+			String copieCin, String pwd, List<InscriptionAssuranceVieDto> iAV) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -48,8 +44,8 @@ public class Client {
 		this.iAV = iAV;
 	}
 	
-	public Client(String nom, String prenom, String adresse, Long telephone, String cin, Date dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVie> iAV) {
+	public ClientDto(String nom, String prenom, String adresse, String telephone, String cin, String dateNaissance,
+			String copieCin, String pwd, List<InscriptionAssuranceVieDto> iAV) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -70,23 +66,23 @@ public class Client {
 		this.pwd = pwd;
 	}
 
-	public Client() {
+	public ClientDto() {
 		super();
 	}
 
-	public Client(Long i) {
-		this.id = i;
+	public ClientDto(String id) {
+		this.id = id;
 	}
 
-	public Client(String cin, String pwd) {
+	public ClientDto(String cin, String pwd) {
 		this.cin=cin;
 		this.pwd=pwd;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNom() {
@@ -107,10 +103,10 @@ public class Client {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public Long getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
-	public void setTelephone(Long telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 	public String getCin() {
@@ -119,10 +115,10 @@ public class Client {
 	public void setCin(String cin) {
 		this.cin = cin;
 	}
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return dateNaissance;
 	}
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 	public String getCopieCin() {
@@ -131,10 +127,10 @@ public class Client {
 	public void setCopieCin(String copieCin) {
 		this.copieCin = copieCin;
 	}
-	public List<InscriptionAssuranceVie> getiAV() {
+	public List<InscriptionAssuranceVieDto> getiAV() {
 		return iAV;
 	}
-	public void setiAV(List<InscriptionAssuranceVie> iAV) {
+	public void setiAV(List<InscriptionAssuranceVieDto> iAV) {
 		this.iAV = iAV;
 	}
 	
