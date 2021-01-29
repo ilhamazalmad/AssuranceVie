@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -30,6 +31,12 @@ public class StringUtil {
     public static Double toDouble(String value){
         if (isNotEmpty(value)) {
             return Double.parseDouble(value);
+        }
+        return null;
+    }
+    public static byte[] toByte(String value){
+        if (isNotEmpty(value)) {
+            return value.getBytes();
         }
         return null;
     }
@@ -62,6 +69,12 @@ public class StringUtil {
     public static String toString(Integer value){
         if (value!=null){
             return value.toString();
+        }
+        return null;
+    }
+    public static String toString(byte[] value){
+        if (value!=null){
+            return new String(value);
         }
         return null;
     }

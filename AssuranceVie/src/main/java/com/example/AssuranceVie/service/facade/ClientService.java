@@ -39,32 +39,37 @@ public class ClientService {
 			return -1;
 	}*/
 	public Client findByCin(String cin) {
+		if(clientDao.findByCin(cin)!= null)
 		return clientDao.findByCin(cin);
+		else
+			return new Client(null);
 	}
 	
 
-	public Client findByPwd(String pwd) {
-		return clientDao.findByPwd(pwd);
-	}
 
 
-	public int save(Client client) {
+	public Client save(Client client) {
 		try{
-			if (client != null && empty(client.getCin()) == -1 && findByCin(client.getCin()) == null
-					&& findByTelephone(client.getTelephone()) == null) {
-			clientDao.save(client);
-			return 1;
+			if (client != null && empty(client.getCin()) == -1 && empty(client.getPwd()) == -1 && 
+				((findByCin(client.getCin()).getId() == null && findByTelephone(client.getTelephone()).getId() == null) || 
+						(client.getId() != null))) {
+			return clientDao.save(client);
 			}
-			else return -1;
+			else 
+				return new Client(null);
 		}catch (Exception e) {
 			// TODO: handle exception
-			 return -2;
+			 System.out.println(e);
+			 return new Client(null);
 		}
 	}
 
 	
 	public Client findByTelephone(Long telephone) {
-		return clientDao.findByTelephone(telephone);
+		if(clientDao.findByTelephone(telephone)!= null)
+			return clientDao.findByTelephone(telephone);
+		else
+			return new Client(null);
 	}
 
 

@@ -25,7 +25,6 @@ public class Client {
 	private Long telephone;
 	private String cin;
 	private Date dateNaissance;
-	private String copieCin;
 	private String pwd;
 	@OneToMany(mappedBy="client",cascade = CascadeType.MERGE)
 	@JsonIgnore
@@ -34,7 +33,7 @@ public class Client {
 
 	
 	public Client(Long id, String nom, String prenom, String adresse, Long telephone, String cin, Date dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVie> iAV) {
+			 String pwd, List<InscriptionAssuranceVie> iAV) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -43,13 +42,12 @@ public class Client {
 		this.telephone = telephone;
 		this.cin = cin;
 		this.dateNaissance = dateNaissance;
-		this.copieCin = copieCin;
 		this.pwd = pwd;
 		this.iAV = iAV;
 	}
 	
 	public Client(String nom, String prenom, String adresse, Long telephone, String cin, Date dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVie> iAV) {
+			 String pwd, List<InscriptionAssuranceVie> iAV) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -57,7 +55,6 @@ public class Client {
 		this.telephone = telephone;
 		this.cin = cin;
 		this.dateNaissance = dateNaissance;
-		this.copieCin = copieCin;
 		this.pwd = pwd;
 		this.iAV = iAV;
 	}
@@ -125,12 +122,7 @@ public class Client {
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	public String getCopieCin() {
-		return copieCin;
-	}
-	public void setCopieCin(String copieCin) {
-		this.copieCin = copieCin;
-	}
+	
 	public List<InscriptionAssuranceVie> getiAV() {
 		return iAV;
 	}

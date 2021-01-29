@@ -22,7 +22,6 @@ public class ClientDto {
 	private String telephone;
 	private String cin;
 	private String dateNaissance;
-	private String copieCin;
 	private String pwd;
 	
 	private List<InscriptionAssuranceVieDto> iAV;
@@ -30,7 +29,7 @@ public class ClientDto {
 
 	
 	public ClientDto(String id, String nom, String prenom, String adresse, String telephone, String cin, String dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVieDto> iAV) {
+			String pwd, List<InscriptionAssuranceVieDto> iAV) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -39,13 +38,12 @@ public class ClientDto {
 		this.telephone = telephone;
 		this.cin = cin;
 		this.dateNaissance = dateNaissance;
-		this.copieCin = copieCin;
 		this.pwd = pwd;
 		this.iAV = iAV;
 	}
 	
 	public ClientDto(String nom, String prenom, String adresse, String telephone, String cin, String dateNaissance,
-			String copieCin, String pwd, List<InscriptionAssuranceVieDto> iAV) {
+			 String pwd, List<InscriptionAssuranceVieDto> iAV) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -53,7 +51,6 @@ public class ClientDto {
 		this.telephone = telephone;
 		this.cin = cin;
 		this.dateNaissance = dateNaissance;
-		this.copieCin = copieCin;
 		this.pwd = pwd;
 		this.iAV = iAV;
 	}
@@ -121,12 +118,7 @@ public class ClientDto {
 	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	public String getCopieCin() {
-		return copieCin;
-	}
-	public void setCopieCin(String copieCin) {
-		this.copieCin = copieCin;
-	}
+	
 	public List<InscriptionAssuranceVieDto> getiAV() {
 		return iAV;
 	}

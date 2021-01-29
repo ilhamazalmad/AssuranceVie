@@ -31,8 +31,8 @@ public class ClientRest {
 	ClientConverter clientConverter;
 
 	@PostMapping("/register")
-	public int  save(@RequestBody ClientDto client) {
-		return clientService.save(clientConverter.toBean(client));
+	public ClientDto  save(@RequestBody ClientDto client) {
+		return clientConverter.toVo(clientService.save(clientConverter.toBean(client)));
 	}
 
 	@GetMapping("/find/cin/{cin}")

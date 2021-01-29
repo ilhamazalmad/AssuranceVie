@@ -47,10 +47,7 @@ public class ClientConverter extends AbstractConverter<Client,ClientDto> {
 				e.printStackTrace();
 			}
 	        }
-		 if(StringUtil.isNotEmpty(vo.getCopieCin())){
-			 client.setCopieCin(vo.getCopieCin());
-	        }
-		 if(StringUtil.isNotEmpty(vo.getPwd())){
+		 		 if(StringUtil.isNotEmpty(vo.getPwd())){
 			 client.setPwd(vo.getPwd());
 	        }
 		 if(vo.getiAV()!=null && iAV){
@@ -85,9 +82,7 @@ public class ClientConverter extends AbstractConverter<Client,ClientDto> {
 		 if(StringUtil.isNotEmpty(StringUtil.toString(bean.getDateNaissance()))){
 			client.setDateNaissance(StringUtil.toString(bean.getDateNaissance()));
 	        }
-		 if(StringUtil.isNotEmpty(bean.getCopieCin())){
-			 client.setCopieCin(bean.getCopieCin());
-	        }
+		 
 		 if(StringUtil.isNotEmpty(bean.getPwd())){
 			 client.setPwd(bean.getPwd());
 	        }
