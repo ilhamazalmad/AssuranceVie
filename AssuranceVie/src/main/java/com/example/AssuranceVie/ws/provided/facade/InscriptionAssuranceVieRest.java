@@ -22,6 +22,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("assurance-api/IAV")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class InscriptionAssuranceVieRest {
 
 	@Autowired

@@ -49,6 +49,7 @@ public class ClientRest {
 
 	@GetMapping("/find")
 	public List<ClientDto> findAll() {
+		clientConverter.setiAV(false);
 		return clientConverter.toVo(clientService.findAll());
 	}
 
@@ -65,7 +66,7 @@ public class ClientRest {
 		return clientConverter.toVo(clientService.loginorregister(cin ,pwd));
 	}
 
-	@DeleteMapping("/find//{id}")
+	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable Long id) {
 		clientService.deleteById(id);
 	}

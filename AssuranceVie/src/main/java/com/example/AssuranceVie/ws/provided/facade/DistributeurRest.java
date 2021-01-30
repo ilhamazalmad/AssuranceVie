@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import com.example.AssuranceVie.ws.provided.dto.DistributeurDto;
 
 @RestController
 @RequestMapping("assurance-api/Distributeur")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class DistributeurRest {
 
 	
@@ -48,6 +51,7 @@ public class DistributeurRest {
 
 	@GetMapping("/find")
 	public List<DistributeurDto> findAll() {
+		distributeurConverter.setiAVPF(false);
 		return distributeurConverter.toVo(distributeurService.findAll());
 	}
 

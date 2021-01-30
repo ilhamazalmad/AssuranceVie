@@ -28,6 +28,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("assurance-api/IAVPF")
+@CrossOrigin(origins="http://localhost:4200")
+
 public class InscriptionAssuranceVieProduitFinancierRest {
 
 	@Autowired
@@ -100,6 +102,19 @@ public class InscriptionAssuranceVieProduitFinancierRest {
     
     @GetMapping("find/all")
     List<InscriptionAssuranceVieProduitFinancierDto> findAll(){
+    	iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setEtatInscription(true);
+		iAVPFConverter.setFormule(true);
+		iAVPFConverter.setiAV(true);
+		iAVPFConverter.setProduit(true);
+		etatConverter.setiAVPF(false);
+		formuleConverter.setProduit(false);
+		iAVConverter.setiAVPF(false);
+		iAVConverter.setClient(true);
+		clientConverter.setiAV(false);
+		produitConverter.setFormules(false);
+		produitConverter.setiAVPF(false);
+		distributeurConverter.setiAVPF(false);
         return iAVPFConverter.toVo(iavfs.findAll());
     }
     @GetMapping("find/ID/{ID}")
