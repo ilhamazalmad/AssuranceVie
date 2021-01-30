@@ -55,12 +55,11 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 	}
 	@GetMapping("find/dist/{id}")
 	List<InscriptionAssuranceVieProduitFinancierDto> findAllForDistributeur(@PathVariable Long id){
-		iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setDistributeur(false);
 		iAVPFConverter.setEtatInscription(true);
 		iAVPFConverter.setFormule(true);
 		iAVPFConverter.setiAV(true);
 		iAVPFConverter.setProduit(true);
-		distributeurConverter.setiAVPF(false);
 		etatConverter.setiAVPF(false);
 		formuleConverter.setProduit(false);
 		iAVConverter.setiAVPF(false);
@@ -68,7 +67,7 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 		clientConverter.setiAV(false);
 		produitConverter.setFormules(false);
 		produitConverter.setiAVPF(false);
-		return iAVPFConverter.toVo(iavfs.findAllByDistributeur_Id(id));
+		return iAVPFConverter.toVo(iavfs.findAllForDistributeur(id));
 	}
     @GetMapping("find/produit/{produit}")
     List<InscriptionAssuranceVieProduitFinancierDto> findByProduit_Id(@PathVariable Long produit){
@@ -77,7 +76,25 @@ public class InscriptionAssuranceVieProduitFinancierRest {
     }
     @GetMapping("find/IAV/{IAV}")
     List<InscriptionAssuranceVieProduitFinancierDto> findByIAV_Id(@PathVariable Long IAV){
+    	
         return iAVPFConverter.toVo(iavfs.findByIAV_Id(IAV));
+
+    }
+    @GetMapping("find/etat/{id}")
+    List<InscriptionAssuranceVieProduitFinancierDto> findByEtatInscription(@PathVariable Long id){
+    	iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setEtatInscription(true);
+		iAVPFConverter.setFormule(true);
+		iAVPFConverter.setiAV(true);
+		iAVPFConverter.setProduit(true);
+		etatConverter.setiAVPF(false);
+		formuleConverter.setProduit(false);
+		iAVConverter.setiAVPF(false);
+		iAVConverter.setClient(false);
+		clientConverter.setiAV(false);
+		produitConverter.setFormules(false);
+		produitConverter.setiAVPF(false);
+        return iAVPFConverter.toVo(iavfs.findByEtatInscription(id));
 
     }
     

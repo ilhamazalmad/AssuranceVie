@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 
@@ -46,6 +48,11 @@ public class InscriptionAssuranceVieProduitFinancierService {
 
     public List<InscriptionAssuranceVieProduitFinancier> findByIAV_Id(Long id){
         return inscriptionAssuranceVieProduitFinancierDao.findByiAV_Id(id);
+
+    }
+
+    public List<InscriptionAssuranceVieProduitFinancier> findByEtatInscription(Long id){
+        return inscriptionAssuranceVieProduitFinancierDao.findByEtatInscription(id);
 
     }
 

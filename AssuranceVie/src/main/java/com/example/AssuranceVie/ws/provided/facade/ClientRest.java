@@ -32,6 +32,7 @@ public class ClientRest {
 
 	@PostMapping("/register")
 	public ClientDto  save(@RequestBody ClientDto client) {
+		clientConverter.setiAV(false);
 		return clientConverter.toVo(clientService.save(clientConverter.toBean(client)));
 	}
 

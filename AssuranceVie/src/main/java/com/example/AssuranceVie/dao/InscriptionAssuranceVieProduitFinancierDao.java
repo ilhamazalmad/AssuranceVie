@@ -15,7 +15,7 @@ import java.util.List;
 public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepository<InscriptionAssuranceVieProduitFinancier,Long>{
 	List<InscriptionAssuranceVieProduitFinancier> findByProduit_Id(Long id);
 	List<InscriptionAssuranceVieProduitFinancier> findByiAV_Reference(String ref);
-	public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(@Param("id") Long id);
+	public List<InscriptionAssuranceVieProduitFinancier> findAllByDistributeur_Id(Long id);
 
 	
 	@Modifying
@@ -27,7 +27,7 @@ public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepositor
 	void deleteByiAV_Id(@Param("id")Long id);
 	
 	@Query(value="Select i.* from inscriptionassurancevieproduitfinancier i "
-			+ "where i.etat_inscription=2 or (i.etat_inscription=3 and  i.dist_id=:id)", nativeQuery = true)
+			+ "where i.etat_inscription=2 or (i.etat_inscription=3 and  i.distributeur=:id)", nativeQuery = true)
 	public List<InscriptionAssuranceVieProduitFinancier> findAllForDistributeur(@Param("id") Long id);
 	
 	@Modifying
@@ -37,5 +37,8 @@ public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepositor
 
 	@Query(value="Select * from inscriptionassurancevieproduitfinancier where iav=:id", nativeQuery = true)
 	List<InscriptionAssuranceVieProduitFinancier> findByiAV_Id(@Param("id")Long id);
+	
+	@Query(value="Select * from inscriptionassurancevieproduitfinancier where etat_inscription=:id", nativeQuery = true)
+	List<InscriptionAssuranceVieProduitFinancier> findByEtatInscription(@Param("id")Long id);
 	
 }
