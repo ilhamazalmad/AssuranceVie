@@ -23,7 +23,6 @@ public class EtatInscription {
 	private String reference;
 	private String libelle;
 	@OneToMany(mappedBy="etatInscription",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 	public Long getId() {
 		return id;

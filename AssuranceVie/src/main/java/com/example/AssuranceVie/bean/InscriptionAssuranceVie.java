@@ -28,12 +28,12 @@ public class InscriptionAssuranceVie {
 	private String reference;
 	//private produit;
 	@ManyToOne
+	@JoinColumn(name="client", nullable=false)
 	private Client client;
 	private Double prix;
 	private Date dateInscription;
 	//private Distributeur distributeur;
 	@OneToMany(mappedBy="iAV",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
     public InscriptionAssuranceVie(String ref3, double v, Date s) {

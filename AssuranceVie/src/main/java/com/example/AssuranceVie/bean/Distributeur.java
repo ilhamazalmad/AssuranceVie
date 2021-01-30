@@ -25,7 +25,6 @@ public class Distributeur {
 	private String libelle;
 	private String pwd;
 	@OneToMany(mappedBy="distributeur",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
     public Distributeur(String r) {
 

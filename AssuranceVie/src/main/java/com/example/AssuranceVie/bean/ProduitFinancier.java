@@ -20,10 +20,8 @@ public class ProduitFinancier {
 	private String code;
 
 	@OneToMany(mappedBy="produitFinancier",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List <Formule> formules;
 	@OneToMany(mappedBy="produit",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
 
 	public ProduitFinancier(long id) {
