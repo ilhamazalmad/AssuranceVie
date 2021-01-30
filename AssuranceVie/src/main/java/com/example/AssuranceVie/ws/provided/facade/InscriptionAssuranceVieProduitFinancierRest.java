@@ -1,10 +1,16 @@
 package com.example.AssuranceVie.ws.provided.facade;
 
+import com.example.AssuranceVie.bean.EtatInscription;
 import com.example.AssuranceVie.bean.InscriptionAssuranceVieProduitFinancier;
 import com.example.AssuranceVie.service.facade.InscriptionAssuranceVieProduitFinancierService;
 import com.example.AssuranceVie.service.util.JasperService;
+import com.example.AssuranceVie.ws.provided.converter.ClientConverter;
+import com.example.AssuranceVie.ws.provided.converter.DistributeurConverter;
+import com.example.AssuranceVie.ws.provided.converter.EtatConverter;
+import com.example.AssuranceVie.ws.provided.converter.FormuleConverter;
 import com.example.AssuranceVie.ws.provided.converter.IAVConverter;
 import com.example.AssuranceVie.ws.provided.converter.IAVPFConverter;
+import com.example.AssuranceVie.ws.provided.converter.ProduitConverter;
 import com.example.AssuranceVie.ws.provided.dto.InscriptionAssuranceVieProduitFinancierDto;
 import com.example.AssuranceVie.ws.provided.dto.SummaryPOJO;
 
@@ -30,12 +36,38 @@ public class InscriptionAssuranceVieProduitFinancierRest {
     JasperService jpserv;
     @Autowired
     IAVPFConverter iAVPFConverter;
+    @Autowired
+    IAVConverter iAVConverter;
+    @Autowired
+    ClientConverter clientConverter;
+    @Autowired
+    DistributeurConverter distributeurConverter;
+    @Autowired
+    EtatConverter etatConverter ;
+    @Autowired
+    FormuleConverter formuleConverter;
+    @Autowired
+    ProduitConverter produitConverter;
+    
 	@GetMapping("find/distID/{distID}")
 	List<InscriptionAssuranceVieProduitFinancierDto> findAllByDistributeur_Id(@PathVariable Long distID){
 		return iAVPFConverter.toVo(iavfs.findAllByDistributeur_Id(distID));
 	}
 	@GetMapping("find/dist/{id}")
 	List<InscriptionAssuranceVieProduitFinancierDto> findAllForDistributeur(@PathVariable Long id){
+		iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setEtatInscription(true);
+		iAVPFConverter.setFormule(true);
+		iAVPFConverter.setiAV(true);
+		iAVPFConverter.setProduit(true);
+		distributeurConverter.setiAVPF(false);
+		etatConverter.setiAVPF(false);
+		formuleConverter.setProduit(false);
+		iAVConverter.setiAVPF(false);
+		iAVConverter.setClient(true);
+		clientConverter.setiAV(false);
+		produitConverter.setFormules(false);
+		produitConverter.setiAVPF(false);
 		return iAVPFConverter.toVo(iavfs.findAllByDistributeur_Id(id));
 	}
     @GetMapping("find/produit/{produit}")

@@ -61,4 +61,21 @@ public class ProduitConverter extends AbstractConverter<ProduitFinancier,Produit
 		return produitFinancier;
 	}
 
+	public boolean isFormules() {
+		return formules;
+	}
+
+	public void setFormules(boolean formules) {
+		this.formules = formules;
+	}
+
+	public boolean isiAVPF() {
+		return iAVPF;
+	}
+
+	public void setiAVPF(boolean iAVPF) {
+		this.iAVPF = iAVPF;
+	}
+	
+
 }

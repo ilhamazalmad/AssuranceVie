@@ -59,4 +59,13 @@ public class FormuleConverter extends AbstractConverter<Formule,FormuleDto> {
 		return formule;
 	}
 
+	public boolean isProduit() {
+		return Produit;
+	}
+
+	public void setProduit(boolean produit) {
+		Produit = produit;
+	}
+	
+
 }

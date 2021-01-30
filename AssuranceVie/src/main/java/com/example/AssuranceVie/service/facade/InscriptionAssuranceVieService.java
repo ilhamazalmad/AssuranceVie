@@ -46,17 +46,22 @@ public class InscriptionAssuranceVieService {
 	ProduitFinancierDao produitFinancierDao;
 	@Autowired
 	FormuleDao formuleDao;
+	@Autowired
+	ClientService clientService;
 
 
 	public int save(InscriptionAssuranceVie ins) {
 		try {
+			
 		TimeZone tz = TimeZone.getTimeZone("UTC");
 		//"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 		df.setTimeZone(tz);
 	    String dateString = df.format( new Date());
 		Date date=df.parse(dateString);
-		ins.setDateInscription(date);
+		System.out.println(date);
+		System.out.println(ins.getClient().getId());
+		ins.setClient(clientService.findById(ins.getClient().getId()));
 		InscriptionAssuranceVie inscription = iAVDao.save(ins);
 		Double total=0.0;
 		for(InscriptionAssuranceVieProduitFinancier iProduit : ins.getiAVPF()) {

@@ -19,6 +19,7 @@ public class DistributeurDto {
 	private String id;
 	private String reference;
 	private String libelle;
+	private String pwd;
 	private List<InscriptionAssuranceVieProduitFinancierDto> iAVPF;
     public DistributeurDto(String r) {
 
@@ -44,6 +45,15 @@ public class DistributeurDto {
 		this.libelle = libelle;
 	}
 	
+	
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
 	public List<InscriptionAssuranceVieProduitFinancierDto> getiAVPF() {
 		return iAVPF;
 	}
@@ -52,17 +62,29 @@ public class DistributeurDto {
 		this.iAVPF = iAVPF;
 	}
 
-	public DistributeurDto(String id, String reference, String libelle,
+	public DistributeurDto(String id, String reference, String libelle, String pwd,
 			List<InscriptionAssuranceVieProduitFinancierDto> iAVPF) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.libelle = libelle;
+		this.pwd = pwd;
+		this.iAVPF = iAVPF;
+	}
+
+	public DistributeurDto(String reference, String libelle, String pwd,
+			List<InscriptionAssuranceVieProduitFinancierDto> iAVPF) {
+		super();
+		this.reference = reference;
+		this.libelle = libelle;
+		this.pwd = pwd;
 		this.iAVPF = iAVPF;
 	}
 
 	public DistributeurDto() {
 		super();
 	}
+
+	
 	
 }

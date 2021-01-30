@@ -3,6 +3,7 @@ package com.example.AssuranceVie.ws.provided.facade;
 import com.example.AssuranceVie.bean.Distributeur;
 import com.example.AssuranceVie.bean.ProduitFinancier;
 import com.example.AssuranceVie.service.facade.InscriptionAssuranceVieService;
+import com.example.AssuranceVie.ws.provided.converter.ClientConverter;
 import com.example.AssuranceVie.ws.provided.converter.IAVConverter;
 import com.example.AssuranceVie.ws.provided.converter.IAVPFConverter;
 import com.example.AssuranceVie.ws.provided.dto.InscriptionAssuranceVieDto;
@@ -29,6 +30,8 @@ public class InscriptionAssuranceVieRest {
 	IAVConverter iAVConverter;
 	@Autowired
     IAVPFConverter iAVPFConverter;
+	@Autowired
+	ClientConverter clientConverter;
 	
 	@GetMapping("find/reference/{reference}")
 	List<InscriptionAssuranceVieDto> findAllByReference(@PathVariable  String  reference){
@@ -44,6 +47,13 @@ public class InscriptionAssuranceVieRest {
 	}
 	@PostMapping("/save")
 	public int save(@RequestBody InscriptionAssuranceVieDto insav) throws Exception{
+		iAVConverter.setClient(true);
+		iAVConverter.setiAVPF(true);
+		iAVPFConverter.setiAV(true);
+		iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setEtatInscription(true);
+		iAVPFConverter.setFormule(true);
+		iAVPFConverter.setProduit(true);
 		return iAVService.save(iAVConverter.toBean(insav));
 	}
 

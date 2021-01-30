@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.AssuranceVie.bean.Distributeur;
 import com.example.AssuranceVie.service.facade.DistributeurService;
 import com.example.AssuranceVie.ws.provided.converter.DistributeurConverter;
+import com.example.AssuranceVie.ws.provided.dto.ClientDto;
 import com.example.AssuranceVie.ws.provided.dto.DistributeurDto;
 
 @RestController
@@ -53,6 +54,10 @@ public class DistributeurRest {
 	@GetMapping("/find/id/{id}")
 	public DistributeurDto findById(@PathVariable Long id) {
 		return distributeurConverter.toVo(distributeurService.findById(id));
+	}
+	@GetMapping("/login/reference/{reference}/pwd/{pwd}")
+	public DistributeurDto login(@PathVariable String reference ,@PathVariable String pwd) {
+		return distributeurConverter.toVo(distributeurService.login(reference ,pwd));
 	}
 
 	@DeleteMapping("/delete/id/{id}")

@@ -75,4 +75,21 @@ public class IAVConverter extends AbstractConverter<InscriptionAssuranceVie,Insc
 		return iAV;
 	}
 
+	public boolean isClient() {
+		return client;
+	}
+
+	public void setClient(boolean client) {
+		this.client = client;
+	}
+
+	public boolean isiAVPF() {
+		return iAVPF;
+	}
+
+	public void setiAVPF(boolean iAVPF) {
+		this.iAVPF = iAVPF;
+	}
+	
+
 }

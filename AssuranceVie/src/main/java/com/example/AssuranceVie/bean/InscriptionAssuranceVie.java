@@ -28,7 +28,6 @@ public class InscriptionAssuranceVie {
 	private String reference;
 	//private produit;
 	@ManyToOne
-	@JoinColumn(name="client", nullable=false)
 	private Client client;
 	private Double prix;
 	private Date dateInscription;

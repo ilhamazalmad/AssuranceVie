@@ -27,7 +27,6 @@ public class Client {
 	private Date dateNaissance;
 	private String pwd;
 	@OneToMany(mappedBy="client",cascade = CascadeType.MERGE)
-	@JsonIgnore
 	private List<InscriptionAssuranceVie> iAV;
  
 

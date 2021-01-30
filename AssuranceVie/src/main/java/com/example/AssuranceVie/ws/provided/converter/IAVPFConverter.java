@@ -87,6 +87,47 @@ public class IAVPFConverter extends AbstractConverter<InscriptionAssuranceViePro
         }
 		return iAVPF;
 	}
+
+	public boolean isiAV() {
+		return iAV;
+	}
+
+	public void setiAV(boolean iAV) {
+		this.iAV = iAV;
+	}
+
+	public boolean isProduit() {
+		return produit;
+	}
+
+	public void setProduit(boolean produit) {
+		this.produit = produit;
+	}
+
+	public boolean isDistributeur() {
+		return distributeur;
+	}
+
+	public void setDistributeur(boolean distributeur) {
+		this.distributeur = distributeur;
+	}
+
+	public boolean isFormule() {
+		return formule;
+	}
+
+	public void setFormule(boolean formule) {
+		this.formule = formule;
+	}
+
+	public boolean isEtatInscription() {
+		return etatInscription;
+	}
+
+	public void setEtatInscription(boolean etatInscription) {
+		this.etatInscription = etatInscription;
+	}
+	
 	
 
 }

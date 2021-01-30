@@ -56,4 +56,13 @@ public class EtatConverter extends AbstractConverter<EtatInscription,EtatInscrip
 		return etatInscription;
 	}
 
+	public boolean isiAVPF() {
+		return iAVPF;
+	}
+
+	public void setiAVPF(boolean iAVPF) {
+		this.iAVPF = iAVPF;
+	}
+	
+
 }

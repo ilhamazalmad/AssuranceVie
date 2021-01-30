@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.AssuranceVie.bean.Client;
 import com.example.AssuranceVie.bean.Distributeur;
 import com.example.AssuranceVie.dao.DistributeurDao;
 
@@ -32,15 +33,24 @@ public class DistributeurService {
 	}
 
 	public Distributeur findById(Long id) {
+		if(distributeurDao.findById(id).get()!=null)
 		return distributeurDao.findById(id).get();
+		else 
+			return new Distributeur(null);
 	}
 
 	public Distributeur findByReference(String reference) {
+		if(distributeurDao.findByReference(reference)!=null)
 		return distributeurDao.findByReference(reference);
+		else 
+			return new Distributeur(null);
 	}
 
 	public Distributeur findByLibelle(String libelle) {
+		if(distributeurDao.findByLibelle(libelle)!=null)
 		return distributeurDao.findByLibelle(libelle);
+		else 
+			return new Distributeur(null);
 	}
 	
 	@Transactional
@@ -48,6 +58,24 @@ public class DistributeurService {
 		distributeurDao.deleteById(id);
 	}
 	
+	public Distributeur login(String reference, String pwd) {
+		int res=0;
+		Distributeur login = null;
+		if (empty(pwd) == 1 || empty(reference) == 1 || distributeurDao.findByReference(reference) == null ) {
+			login = null;
+		} else if (distributeurDao.findByReference(reference) != null ) {
+			login= distributeurDao.findByReference(reference);
+			if(!login.getPwd().equals(pwd))
+				login = null;
+		}
+		return login;
+	}
+	
+	public int empty(String text) {
+		if(text==null || text.isEmpty()) 
+			return 1;
+		else return -1;
+	}
 
 
 

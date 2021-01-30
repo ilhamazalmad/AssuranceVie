@@ -29,6 +29,10 @@ public class DistributeurConverter extends AbstractConverter<Distributeur,Distri
 		if(StringUtil.isNotEmpty(vo.getLibelle())){
 			distributeur.setLibelle(vo.getLibelle());
 	        }
+
+		if(StringUtil.isNotEmpty(vo.getPwd())){
+			distributeur.setPwd(vo.getPwd());
+		}
 		if(vo.getiAVPF()!=null && iAVPF){
 			distributeur.setiAVPF(iAVPFConverter.toBean(vo.getiAVPF()));
         }
@@ -48,10 +52,22 @@ public class DistributeurConverter extends AbstractConverter<Distributeur,Distri
 		if(StringUtil.isNotEmpty(bean.getLibelle())){
 			distributeur.setLibelle(bean.getLibelle());
 	        }
+		if(StringUtil.isNotEmpty(bean.getPwd())){
+			distributeur.setPwd(bean.getPwd());
+	        }
 		if(bean.getiAVPF()!=null && iAVPF){
 			distributeur.setiAVPF(iAVPFConverter.toVo(bean.getiAVPF()));
         }
 		return distributeur;
 	}
+
+	public boolean isiAVPF() {
+		return iAVPF;
+	}
+
+	public void setiAVPF(boolean iAVPF) {
+		this.iAVPF = iAVPF;
+	}
+	
 
 }

@@ -92,6 +92,15 @@ public class ClientConverter extends AbstractConverter<Client,ClientDto> {
 		return client;
 	}
 
+	public boolean isiAV() {
+		return iAV;
+	}
+
+	public void setiAV(boolean iAV) {
+		this.iAV = iAV;
+	}
+	
+
 	
 	
 

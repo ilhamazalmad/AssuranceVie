@@ -23,6 +23,7 @@ public class Distributeur {
 	private Long id;
 	private String reference;
 	private String libelle;
+	private String pwd;
 	@OneToMany(mappedBy="distributeur",cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List<InscriptionAssuranceVieProduitFinancier> iAVPF;
@@ -57,18 +58,39 @@ public class Distributeur {
 	public void setiAVPF(List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		this.iAVPF = iAVPF;
 	}
+	
+	public String getPwd() {
+		return pwd;
+	}
 
-	public Distributeur(Long id, String reference, String libelle,
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public Distributeur(Long id, String reference, String libelle, String pwd,
 			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.libelle = libelle;
+		this.pwd = pwd;
 		this.iAVPF = iAVPF;
 	}
 
 	public Distributeur() {
 		super();
 	}
+
+	public Distributeur(String reference, String libelle, String pwd,
+			List<InscriptionAssuranceVieProduitFinancier> iAVPF) {
+		super();
+		this.reference = reference;
+		this.libelle = libelle;
+		this.pwd = pwd;
+		this.iAVPF = iAVPF;
+	}
+	
+
+	
 	
 }
