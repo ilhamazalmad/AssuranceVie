@@ -42,7 +42,7 @@ public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepositor
 	List<InscriptionAssuranceVieProduitFinancier> findByEtatInscription(@Param("id")Long id);
 	
 	@Query(value="Select i.* from inscriptionassurancevieproduitfinancier i , inscriptionassurancevie iavie "
-			+ "where i.iav=iavie.id and iavie.client=:id)", nativeQuery = true)
+			+ "where i.iav=iavie.id and iavie.client=:id", nativeQuery = true)
 	public List<InscriptionAssuranceVieProduitFinancier> findByClient(@Param("id") Long id);
 	
 }
