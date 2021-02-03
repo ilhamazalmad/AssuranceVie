@@ -96,6 +96,14 @@ public class InscriptionAssuranceVieProduitFinancierService {
         else return -1;
     }
 
+	public List<InscriptionAssuranceVieProduitFinancier> findByClient(Long id) {
+		return inscriptionAssuranceVieProduitFinancierDao.findByClient(id);
+	}
+	
+	
+	
+	
+
 
 
 }

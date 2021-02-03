@@ -34,6 +34,8 @@ public class ProduitFinancierRest {
 	
 	@GetMapping("find/libelle/{libelle}")
 	public ProduitFinancierDto findByLibelle(@PathVariable String libelle) {
+		produitConverter.setFormules(false);
+		produitConverter.setiAVPF(false);
 		return produitConverter.toVo(produitFinancierService.findByLibelle(libelle));
 	}
 

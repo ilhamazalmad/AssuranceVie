@@ -167,5 +167,10 @@ public class InscriptionAssuranceVieProduitFinancierRest {
 	public InscriptionAssuranceVieProduitFinancierDto findById(@PathVariable Long id) {
 		return iAVPFConverter.toVo(iavfs.findById(id));
 	}
+	@GetMapping("find/client/{id}")
+	public List<InscriptionAssuranceVieProduitFinancierDto> findByClient(@PathVariable Long id) {
+		return iAVPFConverter.toVo(iavfs.findByClient(id));
+	}
+	
 
 }

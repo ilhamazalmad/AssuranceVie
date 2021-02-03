@@ -52,7 +52,7 @@ public class InscriptionAssuranceVieRest {
 		iAVConverter.setClient(true);
 		iAVConverter.setiAVPF(true);
 		iAVPFConverter.setiAV(true);
-		iAVPFConverter.setDistributeur(true);
+		iAVPFConverter.setDistributeur(false);
 		iAVPFConverter.setEtatInscription(true);
 		iAVPFConverter.setFormule(true);
 		iAVPFConverter.setProduit(true);

@@ -46,7 +46,9 @@ public class DistributeurRest {
 
 	@PostMapping("/save")
 	public int save(@RequestBody DistributeurDto distributeur) {
+		distributeurConverter.setiAVPF(false);
 		return distributeurService.save(distributeurConverter.toBean(distributeur));
+		
 	}
 
 	@GetMapping("/find")

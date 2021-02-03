@@ -18,7 +18,7 @@ public class DistributeurService {
 	
 	
 	public int save(Distributeur distributeur) {
-			if (findByReference(distributeur.getReference())==null && findByLibelle(distributeur.getLibelle())==null)
+			if (findByReference(distributeur.getReference()).getId()==null && findByLibelle(distributeur.getLibelle()).getId()==null)
 		{
 			distributeurDao.save(distributeur);
 			return 1;

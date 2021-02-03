@@ -32,7 +32,7 @@ public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepositor
 	
 	@Modifying
 	@Query(value="Update inscriptionassurancevieproduitfinancier "
-			+ "set dist_id =:dist_id , etat_inscription=3	where id=:id",nativeQuery = true)
+			+ "set distributeur =:dist_id , etat_inscription=3	where id=:id",nativeQuery = true)
 	public void affilier(@Param("id")Long id,@Param("dist_id") Long dist_id);
 
 	@Query(value="Select * from inscriptionassurancevieproduitfinancier where iav=:id", nativeQuery = true)
@@ -40,5 +40,9 @@ public interface InscriptionAssuranceVieProduitFinancierDao extends JpaRepositor
 	
 	@Query(value="Select * from inscriptionassurancevieproduitfinancier where etat_inscription=:id", nativeQuery = true)
 	List<InscriptionAssuranceVieProduitFinancier> findByEtatInscription(@Param("id")Long id);
+	
+	@Query(value="Select i.* from inscriptionassurancevieproduitfinancier i , inscriptionassurancevie iavie "
+			+ "where i.iav=iavie.id and iavie.client=:id)", nativeQuery = true)
+	public List<InscriptionAssuranceVieProduitFinancier> findByClient(@Param("id") Long id);
 	
 }

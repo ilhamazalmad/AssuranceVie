@@ -40,6 +40,7 @@ public class ClientRest {
 	public ClientDto findByCin(@PathVariable String cin) {
 		return clientConverter.toVo(clientService.findByCin(cin));
 	}
+	
 
 	@GetMapping("/find/telephone/{telephone}")
 	public ClientDto findByTelephone(@PathVariable Long telephone) {

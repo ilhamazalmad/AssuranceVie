@@ -59,27 +59,30 @@ public class InscriptionAssuranceVieService {
 		df.setTimeZone(tz);
 	    String dateString = df.format( new Date());
 		Date date=df.parse(dateString);
-		System.out.println(date);
-		System.out.println(ins.getClient().getId());
-		ins.setClient(clientService.findById(ins.getClient().getId()));
-		InscriptionAssuranceVie inscription = iAVDao.save(ins);
-		Double total=0.0;
-		for(InscriptionAssuranceVieProduitFinancier iProduit : ins.getiAVPF()) {
-			iProduit.setiAV(inscription);
-			if(iProduit.getEtatInscription()==null) {
-				iProduit.setEtatInscription(etatInscriptionDao.findById(Long.valueOf(1)).get());
+		ins.setDateInscription(date);
+		if(clientService.findById(ins.getClient().getId()).getNom() !=null)
+		{
+			ins.setClient(clientService.findById(ins.getClient().getId()));
+			ins.setReference(ins.getClient().getNom()+"-"+ins.getClient().getPrenom()+":"+date);
+			InscriptionAssuranceVie inscription = iAVDao.save(ins);
+			Double total=0.0;
+			for(InscriptionAssuranceVieProduitFinancier iProduit : ins.getiAVPF()) {
+				iProduit.setiAV(inscription);
+				if(iProduit.getEtatInscription()==null) {
+					iProduit.setEtatInscription(etatInscriptionDao.findById(Long.valueOf(1)).get());
+				}
+				
+				iProduit.setPrix(formuleDao.findById(iProduit.getFormule().getId()).get().getPrix());
+				total+=iProduit.getPrix();
+				iAVPFDao.save(iProduit);
 			}
-			if(iProduit.getDistributeur()==null) {
-				iProduit.setDistributeur(distributeurDao.findById(Long.valueOf(1)).get());
-			}
-			iProduit.setPrix(formuleDao.findById(iProduit.getFormule().getId()).get().getPrix());
-			total+=iProduit.getPrix();
-			iAVPFDao.save(iProduit);
+			inscription.setPrix(total);
+			iAVDao.save(inscription);
+			//iAVDao.save(ins);
+			return 1;
 		}
-		inscription.setPrix(total);
-		iAVDao.save(inscription);
-		//iAVDao.save(ins);
-		return 1;
+		else 
+			return -2;
 		}
 		catch (Exception e) {
 			System.out.println(e);

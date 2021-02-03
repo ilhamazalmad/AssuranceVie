@@ -18,6 +18,7 @@ import com.example.AssuranceVie.bean.Formule;
 import com.example.AssuranceVie.bean.ProduitFinancier;
 import com.example.AssuranceVie.service.facade.FormuleService;
 import com.example.AssuranceVie.ws.provided.converter.FormuleConverter;
+import com.example.AssuranceVie.ws.provided.converter.ProduitConverter;
 import com.example.AssuranceVie.ws.provided.dto.FormuleDto;
 @RestController
 @RequestMapping("assurance-api/Formule")
@@ -29,6 +30,8 @@ public class FormuleRest {
 	FormuleService formuleService ;
 	@Autowired
 	FormuleConverter formuleConverter;
+	@Autowired
+	ProduitConverter produitConverter; 
 	
 	@GetMapping("/find/reference/{reference}")
 	public FormuleDto findByReference(@PathVariable String reference) {
@@ -43,6 +46,9 @@ public class FormuleRest {
 	
 	@GetMapping("/find/produitFinancier/{produitFinancier}")
 	public List<FormuleDto> findByProduitFinancier(@PathVariable Long produitFinancier) {
+		formuleConverter.setProduit(true);
+		produitConverter.setFormules(false);
+		produitConverter.setiAVPF(false);
 		return formuleConverter.toVo(formuleService.findByProduitFinancier(produitFinancier));
 	}
 
